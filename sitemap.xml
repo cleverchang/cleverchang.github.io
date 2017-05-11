@@ -1,60 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <url>
-    <loc>http://www.xichangblog.com/child/2017/05/08/java%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-jsp-servlet%E7%AF%87/</loc>
-    
-    <lastmod>2017-05-08T05:57:22.227Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.xichangblog.com/child/2017/05/07/Java%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD%E2%80%94%E2%80%94Struts%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E7%AF%87/</loc>
-    
-    <lastmod>2017-05-08T05:27:48.574Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.xichangblog.com/child/2017/05/07/Java%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD%E2%80%94%E2%80%94Struts%E5%90%8C%E6%97%B6%E4%B8%8A%E4%BC%A0%E5%A4%9A%E4%B8%AA%E6%96%87%E4%BB%B6/</loc>
-    
-    <lastmod>2017-05-08T05:27:41.032Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.xichangblog.com/child/2017/05/07/Java%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD%E2%80%94%E2%80%94Struts/</loc>
-    
-    <lastmod>2017-05-08T05:27:32.528Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.xichangblog.com/child/2017/05/06/%E6%96%B0%E5%BC%80%E5%A7%8B-%E5%8D%9A%E5%AE%A2%E7%94%9F%E6%B4%BB/</loc>
-    
-    <lastmod>2017-05-08T05:26:28.800Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.xichangblog.com/child/about/index.html</loc>
-    
-    <lastmod>2017-05-06T12:30:58.608Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.xichangblog.com/child/tags/index.html</loc>
-    
-    <lastmod>2017-05-06T12:20:31.633Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.xichangblog.com/child/categories/index.html</loc>
-    
-    <lastmod>2017-05-05T08:22:52.967Z</lastmod>
-    
-  </url>
-  
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://xichangblog.com/</loc>
+  <lastmod>2017-05-11T11:02:27+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>http://xichangblog.com/categories/</loc>
+  <lastmod>2017-05-11T11:02:27+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://xichangblog.com/about/</loc>
+  <lastmod>2017-05-11T11:02:27+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://xichangblog.com/archives/</loc>
+  <lastmod>2017-05-11T11:02:27+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://xichangblog.com/tags/</loc>
+  <lastmod>2017-05-11T11:02:27+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://xichangblog.com/categories/Java-Web/</loc>
+  <lastmod>2017-05-11T11:02:27+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://xichangblog.com/categories/index.html</loc>
+  <lastmod>2017-05-11T11:02:27+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://xichangblog.com/tags/index.html</loc>
+  <lastmod>2017-05-11T11:02:27+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://xichangblog.com/tags/java/</loc>
+  <lastmod>2017-05-11T11:02:27+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://xichangblog.com/tags/struts/</loc>
+  <lastmod>2017-05-11T11:02:27+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
 </urlset>
