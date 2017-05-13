@@ -97,10 +97,12 @@
 <meta property="og:url" content="http://www.xichangblog.com/2017/05/13/谈谈Java内存泄漏/index.html">
 <meta property="og:site_name" content="The Kite Runner">
 <meta property="og:description" content="虽然java凭借垃圾回收机制获得了很多人的青睐，但是java还是存在内存泄漏，那么内存泄漏是什么呢？我们可能听说过，却没有实在的了解过，今天这篇文章，就是来谈谈内存泄漏的。 ​    1、内存泄漏是什么？ 　　内存泄漏其实就是在一个程序中，一些没有用了的对象没有被回收，而继续占用着内存，造成了内存的浪费。（当然这是我自己的通俗话语。）百度上是这么说的：内存泄漏也称作“存储渗漏”，用动态存储分配">
-<meta property="og:updated_time" content="2017-05-13T14:13:31.636Z">
+<meta property="og:image" content="http://i4.buimg.com/588926/c762618add7eef5c.png">
+<meta property="og:updated_time" content="2017-05-13T14:17:46.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈谈Java内存泄漏">
 <meta name="twitter:description" content="虽然java凭借垃圾回收机制获得了很多人的青睐，但是java还是存在内存泄漏，那么内存泄漏是什么呢？我们可能听说过，却没有实在的了解过，今天这篇文章，就是来谈谈内存泄漏的。 ​    1、内存泄漏是什么？ 　　内存泄漏其实就是在一个程序中，一些没有用了的对象没有被回收，而继续占用着内存，造成了内存的浪费。（当然这是我自己的通俗话语。）百度上是这么说的：内存泄漏也称作“存储渗漏”，用动态存储分配">
+<meta name="twitter:image" content="http://i4.buimg.com/588926/c762618add7eef5c.png">
 
 
 
@@ -365,14 +367,14 @@
 <p>　　<strong><em>2、造成泄漏的原因是什么？</em></strong></p>
 <p>　　    为什么会出现内存的泄漏？当一个程序运行中，那些已经用过的对象，不应该已经被java回收器回收了吗？而真实情况却不是这样子。</p>
 <p>　　其实对象在内存中存在两种状态：一、没有被使用的对象，二、没有被引用的对象。没被使用的对象不一定会被回收，因为它可能被其他的对象引用了，而没有被引用的对象则一定会被回收，因为它既没有别的对象引用它，自己也没有被使用。所以当对象被引用的时候就可能存在了内存泄漏。用图表示就像这样：</p>
-<p><a href="http://i4.buimg.com/588926/c762618add7eef5c.png" target="_blank" rel="external"></a></p>
+<p><img src="http://i4.buimg.com/588926/c762618add7eef5c.png" alt=""></p>
 <p>　　对象A运行时间从T1到T2，在A运行中引用了对象B，而B对象在T2之前就不再使用，理应被java回收器回收，但是B对象被A对象引用，导致回收器无法将对象B回收，这就导致了内存泄漏。如果A对象引用了很多对象，那内存很多都无法回收，系统就会越来越慢了。</p>
 <p>　　<strong><em>3、如何防止内存泄漏？</em></strong></p>
 <p>　　（1）小心的使用static，并且注意HashMap,ArrayList等集合类，他们是经常发生内存泄漏的地方，如果你使用了static，那这个集合类基本就伴随程序从生到死了。</p>
 <p>　　（2）“如果一个类管理它自己的内存，程序员应该对内存泄漏保持警惕。”很多时候，当一个对象的成员变量指向其他对象时，不再使用时需要被设置为NULL。</p>
 <p>　　（3）注意事件监听器和回调，如果一个监听器已经被注册，但是当这个类不再被使用时却未被注销，就造成了内存泄漏。</p>
 <p>　　（4）小心的new对象，程序中不要new太多不必要的对象。</p>
-<p><font size="2">参考文献:《thinging in java》,<a href="http://i4.buimg.com/588926/c762618add7eef5c.png" target="_blank" rel="external">ImportNew</a><font></font></font></p>
+<p>　　<font size="1">参考文献:《thinging in java》,<a href="http://i4.buimg.com/588926/c762618add7eef5c.png" target="_blank" rel="external">ImportNew</a><font></font></font></p>
 
       
     </div>
