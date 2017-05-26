@@ -90,20 +90,20 @@
 
 
 
-<meta name="description" content="今天自己做学校选课网站前台页面时踩了两个坑，在此记录分享： 　　1、前台页面文字以及图片等的位置固定以及相对位置。 　　２、滑动框的显示与设置。 　　问题一：注意设置相对位置时要设置position：relative；并且最后用top,left设置位置，单位最好用px,不用百分比。 　　问题二：注意有没有加入overflow: hidden;这句话，如果想要消除滑动框可以用这句，如果需要滑动框">
+<meta name="description" content="今天自己做学校选课网站前台页面时踩了两个坑，在此记录分享： 　　1、前台页面文字以及图片等的位置固定以及相对位置。 　　２、滑动框的显示与设置。 　　问题一：注意设置相对位置时要设置position：relative；并且最后用top,left设置位置，最好auto自适应。不一定需要设死。 　　问题二：注意有没有加入overflow: hidden;这句话，如果想要消除滑动框可以用这句，如果需">
 <meta name="keywords" content="css基础小技巧">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css基础小技巧——滑动框与固定位置">
 <meta property="og:url" content="http://www.xichangblog.com/2017/05/25/css基础小技巧——滑动框与固定位置/index.html">
 <meta property="og:site_name" content="The Kite Runner">
-<meta property="og:description" content="今天自己做学校选课网站前台页面时踩了两个坑，在此记录分享： 　　1、前台页面文字以及图片等的位置固定以及相对位置。 　　２、滑动框的显示与设置。 　　问题一：注意设置相对位置时要设置position：relative；并且最后用top,left设置位置，单位最好用px,不用百分比。 　　问题二：注意有没有加入overflow: hidden;这句话，如果想要消除滑动框可以用这句，如果需要滑动框">
+<meta property="og:description" content="今天自己做学校选课网站前台页面时踩了两个坑，在此记录分享： 　　1、前台页面文字以及图片等的位置固定以及相对位置。 　　２、滑动框的显示与设置。 　　问题一：注意设置相对位置时要设置position：relative；并且最后用top,left设置位置，最好auto自适应。不一定需要设死。 　　问题二：注意有没有加入overflow: hidden;这句话，如果想要消除滑动框可以用这句，如果需">
 <meta property="og:image" content="http://i1.piimg.com/588926/290296dcbc172344.png">
 <meta property="og:image" content="http://i4.buimg.com/588926/f1dbb919ba7a6908.png">
 <meta property="og:image" content="http://i1.piimg.com/588926/a9cb823afbc6e326.png">
-<meta property="og:updated_time" content="2017-05-25T13:37:44.801Z">
+<meta property="og:updated_time" content="2017-05-26T07:12:05.223Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css基础小技巧——滑动框与固定位置">
-<meta name="twitter:description" content="今天自己做学校选课网站前台页面时踩了两个坑，在此记录分享： 　　1、前台页面文字以及图片等的位置固定以及相对位置。 　　２、滑动框的显示与设置。 　　问题一：注意设置相对位置时要设置position：relative；并且最后用top,left设置位置，单位最好用px,不用百分比。 　　问题二：注意有没有加入overflow: hidden;这句话，如果想要消除滑动框可以用这句，如果需要滑动框">
+<meta name="twitter:description" content="今天自己做学校选课网站前台页面时踩了两个坑，在此记录分享： 　　1、前台页面文字以及图片等的位置固定以及相对位置。 　　２、滑动框的显示与设置。 　　问题一：注意设置相对位置时要设置position：relative；并且最后用top,left设置位置，最好auto自适应。不一定需要设死。 　　问题二：注意有没有加入overflow: hidden;这句话，如果想要消除滑动框可以用这句，如果需">
 <meta name="twitter:image" content="http://i1.piimg.com/588926/290296dcbc172344.png">
 
 
@@ -366,7 +366,7 @@
         <p>　　今天自己做学校选课网站前台页面时踩了两个坑，在此记录分享：</p>
 <p>　　<strong>1、前台页面文字以及图片等的位置固定以及相对位置。</strong></p>
 <p>　　<strong>２、滑动框的显示与设置。</strong></p>
-<p>　　<strong>问题一：注意设置相对位置时要设置position：relative；并且最后用top,left设置位置，单位最好用px,不用百分比。</strong></p>
+<p>　　<strong>问题一：注意设置相对位置时要设置position：relative；并且最后用top,left设置位置，最好auto自适应。不一定需要设死。</strong></p>
 <p>　　<strong>问题二：注意有没有加入overflow: hidden;这句话，如果想要消除滑动框可以用这句，如果需要滑动框，则设置为overflow: auto;(div标签设置滑动框也可以如此设置)</strong></p>
 <p>　　本来这是两小小的问题，但是问题一与问题二联合起来时就出现了新状况。如下图所示：</p>
 <p>原页面如图所示：</p>
