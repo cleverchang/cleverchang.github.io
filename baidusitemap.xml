@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>http://www.xichangblog.com/2017/06/02/Hibernate%E4%B9%8B%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB/</loc>
-    <lastmod>2017-06-02T06:32:05.613Z</lastmod>
+    <loc>http://www.xichangblog.com/2017/06/02/Hibernate%E4%B9%8B%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB/</loc>
+    <lastmod>2017-06-02T10:16:19.326Z</lastmod>
     <data>
         <display>
-        <title>Hibernate之多对多关联关系</title>
-        <pubTime>2017-06-02T03:37:44.000Z</pubTime>
+        <title>Hibernate之一对多关联关系</title>
+        <pubTime>2017-06-02T02:42:43.000Z</pubTime>
         
         <tag>关联关系</tag>
          
@@ -24,12 +24,12 @@
 
     
   <url>
-    <loc>http://www.xichangblog.com/2017/06/02/Hibernate%E4%B9%8B%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB/</loc>
-    <lastmod>2017-06-02T06:20:42.462Z</lastmod>
+    <loc>http://www.xichangblog.com/2017/06/02/Hibernate%E4%B9%8B%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB/</loc>
+    <lastmod>2017-06-02T09:38:18.477Z</lastmod>
     <data>
         <display>
-        <title>Hibernate之一对多关联关系</title>
-        <pubTime>2017-06-02T02:42:43.000Z</pubTime>
+        <title>Hibernate之多对多关联关系</title>
+        <pubTime>2017-06-02T03:37:44.000Z</pubTime>
         
         <tag>关联关系</tag>
          

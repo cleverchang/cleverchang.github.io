@@ -97,7 +97,7 @@
 <meta property="og:url" content="http://www.xichangblog.com/2017/06/02/Hibernate之一对多关联关系/index.html">
 <meta property="og:site_name" content="The Kite Runner">
 <meta property="og:description" content="今天分享的主题是hibernate配置一对多关系。在画E-R图时，我们难免会发现两个表中会有一对一，一对多，或者多对多关系。所以配置关系是很重要的一部分。 一对多  　　student表与grade表存在着一对多关系，一个学生（高中及以下）只有一个班级，而一个班级会有多个学生。都要实现序列化接口。 创建学生Student表（多方） 1234private Grade grade;	privat">
-<meta property="og:updated_time" content="2017-06-02T06:20:42.462Z">
+<meta property="og:updated_time" content="2017-06-02T10:16:19.326Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hibernate之一对多关联关系">
 <meta name="twitter:description" content="今天分享的主题是hibernate配置一对多关系。在画E-R图时，我们难免会发现两个表中会有一对一，一对多，或者多对多关系。所以配置关系是很重要的一部分。 一对多  　　student表与grade表存在着一对多关系，一个学生（高中及以下）只有一个班级，而一个班级会有多个学生。都要实现序列化接口。 创建学生Student表（多方） 1234private Grade grade;	privat">
@@ -371,11 +371,8 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"students"</span> <span class="attr">table</span>=<span class="string">"Student"</span> <span class="attr">inverse</span>=<span class="string">"true"</span> <span class="attr">lazy</span>=<span class="string">"true"</span> <span class="attr">cascade</span>=<span class="string">"delete"</span>&gt;</span></div><div class="line">           <span class="comment">&lt;!-- 关联外键列 --&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">key</span>&gt;</span></div><div class="line">               <span class="tag">&lt;<span class="name">column</span> <span class="attr">name</span>=<span class="string">"gid"</span> /&gt;</span></div><div class="line">           <span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">class</span>=<span class="string">"xichang.Student"</span> /&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">set</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>在Student.hbm.xml中加以下代码，column这个属性的，记得配置。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">many-to-one</span> <span class="attr">name</span>=<span class="string">"grade"</span> <span class="attr">class</span>=<span class="string">"xichang.Grade"</span> <span class="attr">column</span>=<span class="string">"gid"</span>&gt;</span><span class="tag">&lt;/<span class="name">many-to-one</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><strong>inverse属性来维护关联关系，false代表不反转 ，即自己负责，true为反转，即对方负责， 若两方同时维护则会影响性能，cascade为级联。</strong></p>
-<p>当inverse为true时，即反转，由对方负责，即“多”方负责,代码必须按如下方式写：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Grade g=<span class="keyword">new</span> Grade();</div><div class="line">Student s=<span class="keyword">new</span> Student();</div><div class="line">s.setGrade(g);</div></pre></td></tr></table></figure>
-<p>当inverse为false时，即不反转，由自己负责，即“1”方负责,代码必须按如下方式写：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Grade g=<span class="keyword">new</span> Grade();</div><div class="line">Student s=<span class="keyword">new</span> Student();</div><div class="line">g.getStudents().add(s);</div></pre></td></tr></table></figure>
+<p><strong>inverse属性来维护关联关系，false代表不反转 ，即自己负责，true为反转，即对方负责， 若两方同时维护则会影响性能，cascade为级联，决定是否把对对象的改动反映到数据库中。</strong></p>
+<p>当inverse为true时，即反转，由对方(Student“多方”)负责。当inverse为false时，即不反转，由自己（Grade“一方”）负责</p>
 <p>最后友情提示，不要忘记在配置文件中加上</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mapping</span> <span class="attr">resource</span>=<span class="string">"entity/***.hbm.xml"</span>/&gt;</span></div></pre></td></tr></table></figure>
 
