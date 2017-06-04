@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="css基础小技巧," />
+  <meta name="keywords" content="java,数组,内存," />
 
 
 
@@ -90,21 +90,20 @@
 
 
 
-<meta name="description" content="今天自己做学校选课网站前台页面时踩了两个坑，在此记录分享： 　　1、前台页面文字以及图片等的位置固定以及相对位置。 　　２、滑动框的显示与设置。 　　问题一：注意设置相对位置时要设置position：relative；并且最后用top,left设置位置，最好auto自适应。不一定需要设死。 　　问题二：注意有没有加入overflow: hidden;这句话，如果想要消除滑动框可以用这句，如果需">
-<meta name="keywords" content="css基础小技巧">
+<meta name="description" content="Java中的数组是静态的，一旦初始化后，长度就不会改变。所谓初始化，就是为数组对象的元素分配内存空间，为每个数组元素指定初始化值。 　　初始化有两种方式： 　　1、静态初始化：初始化时由我们显示赋值，由系统决定长度，即我们自己确定每个数组元素是什么，但是不规定长度。 1234String [] students=new String[]&amp;#123; &quot;西昌&quot;,&quot;酒泉&quot;&amp;#125; 1234St">
+<meta name="keywords" content="java,数组,内存">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css基础小技巧——滑动框与固定位置">
-<meta property="og:url" content="http://www.xichangblog.com/2017/05/25/css基础小技巧——滑动框与固定位置/index.html">
+<meta property="og:title" content="浅谈Java数组">
+<meta property="og:url" content="http://www.xichangblog.com/2017/06/03/浅谈Java数组/index.html">
 <meta property="og:site_name" content="The Kite Runner">
-<meta property="og:description" content="今天自己做学校选课网站前台页面时踩了两个坑，在此记录分享： 　　1、前台页面文字以及图片等的位置固定以及相对位置。 　　２、滑动框的显示与设置。 　　问题一：注意设置相对位置时要设置position：relative；并且最后用top,left设置位置，最好auto自适应。不一定需要设死。 　　问题二：注意有没有加入overflow: hidden;这句话，如果想要消除滑动框可以用这句，如果需">
-<meta property="og:image" content="http://i1.piimg.com/588926/290296dcbc172344.png">
-<meta property="og:image" content="http://i4.buimg.com/588926/f1dbb919ba7a6908.png">
-<meta property="og:image" content="http://i1.piimg.com/588926/a9cb823afbc6e326.png">
-<meta property="og:updated_time" content="2017-05-26T07:12:05.223Z">
+<meta property="og:description" content="Java中的数组是静态的，一旦初始化后，长度就不会改变。所谓初始化，就是为数组对象的元素分配内存空间，为每个数组元素指定初始化值。 　　初始化有两种方式： 　　1、静态初始化：初始化时由我们显示赋值，由系统决定长度，即我们自己确定每个数组元素是什么，但是不规定长度。 1234String [] students=new String[]&amp;#123; &quot;西昌&quot;,&quot;酒泉&quot;&amp;#125; 1234St">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-4/38802436.jpg">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-4/80913328.jpg">
+<meta property="og:updated_time" content="2017-06-04T12:24:48.653Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="css基础小技巧——滑动框与固定位置">
-<meta name="twitter:description" content="今天自己做学校选课网站前台页面时踩了两个坑，在此记录分享： 　　1、前台页面文字以及图片等的位置固定以及相对位置。 　　２、滑动框的显示与设置。 　　问题一：注意设置相对位置时要设置position：relative；并且最后用top,left设置位置，最好auto自适应。不一定需要设死。 　　问题二：注意有没有加入overflow: hidden;这句话，如果想要消除滑动框可以用这句，如果需">
-<meta name="twitter:image" content="http://i1.piimg.com/588926/290296dcbc172344.png">
+<meta name="twitter:title" content="浅谈Java数组">
+<meta name="twitter:description" content="Java中的数组是静态的，一旦初始化后，长度就不会改变。所谓初始化，就是为数组对象的元素分配内存空间，为每个数组元素指定初始化值。 　　初始化有两种方式： 　　1、静态初始化：初始化时由我们显示赋值，由系统决定长度，即我们自己确定每个数组元素是什么，但是不规定长度。 1234String [] students=new String[]&amp;#123; &quot;西昌&quot;,&quot;酒泉&quot;&amp;#125; 1234St">
+<meta name="twitter:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-4/38802436.jpg">
 
 
 
@@ -132,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://www.xichangblog.com/2017/05/25/css基础小技巧——滑动框与固定位置/"/>
+  <link rel="canonical" href="http://www.xichangblog.com/2017/06/03/浅谈Java数组/"/>
 
 
 
 
 
-  <title>css基础小技巧——滑动框与固定位置 | The Kite Runner</title>
+  <title>浅谈Java数组 | The Kite Runner</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -277,7 +276,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.xichangblog.com/2017/05/25/css基础小技巧——滑动框与固定位置/">
+    <link itemprop="mainEntityOfPage" href="http://www.xichangblog.com/2017/06/03/浅谈Java数组/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="The Kite Runner">
@@ -294,7 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">css基础小技巧——滑动框与固定位置</h1>
+          <h1 class="post-title" itemprop="name headline">浅谈Java数组</h1>
         
 
         <div class="post-meta">
@@ -306,8 +305,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-25T20:46:01+08:00">
-                2017-05-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-03T11:17:31+08:00">
+                2017-06-03
               </time>
             
 
@@ -329,8 +328,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
+                  <a href="/categories/Thinking-in-java/" itemprop="url" rel="index">
+                    <span itemprop="name">Thinking in java</span>
                   </a>
                 </span>
 
@@ -363,23 +362,24 @@
       
 
       
-        <p>　　今天自己做学校选课网站前台页面时踩了两个坑，在此记录分享：</p>
-<p>　　<strong>1、前台页面文字以及图片等的位置固定以及相对位置。</strong></p>
-<p>　　<strong>２、滑动框的显示与设置。</strong></p>
-<p>　　<strong>问题一：注意设置相对位置时要设置position：relative；并且最后用top,left设置位置，最好auto自适应。不一定需要设死。</strong></p>
-<p>　　<strong>问题二：注意有没有加入overflow: hidden;这句话，如果想要消除滑动框可以用这句，如果需要滑动框，则设置为overflow: auto;(div标签设置滑动框也可以如此设置)</strong></p>
-<p>　　本来这是两小小的问题，但是问题一与问题二联合起来时就出现了新状况。如下图所示：</p>
-<p>原页面如图所示：</p>
-<p><img src="http://i1.piimg.com/588926/290296dcbc172344.png" alt=""></p>
-<p>当把浏览器缩小并且拖动，会发现<strong>字迹会从一行下来甚至可能重叠</strong>：</p>
-<p><img src="http://i4.buimg.com/588926/f1dbb919ba7a6908.png" alt=""></p>
-<p>发生以上问题，是<strong><em>因为没有设置好div标签的高度和宽度（这里用的div标签，class=“hello”，其他标签也一样，例如ul）</em></strong>，如果在css中设置如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.hello</span>&#123;</div><div class="line">	<span class="attribute">position</span>: fixed;</div><div class="line">	<span class="attribute">height</span>: <span class="number">20px</span>;</div><div class="line">	<span class="attribute">width</span>: <span class="number">1000px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>便可以轻松解决文字下来的问题（图片发生这个问题也可以这么解决）。</p>
-<p><strong>但是如果位置设置设置成position:fixed,浏览器的滑动框就会无效果。</strong></p>
-<p><font color="#804040"><strong><em>解决办法：设置position：absolute；</em></strong></font>这样一来，滑动框就有效果了。</p>
-<p>最后记录下目前进度吧，如下图😁：</p>
-<p><img src="http://i1.piimg.com/588926/a9cb823afbc6e326.png" alt=""></p>
+        <p>　　Java中的数组是静态的，一旦初始化后，长度就不会改变。所谓初始化，就是为数组对象的元素分配内存空间，为每个数组元素指定初始化值。</p>
+<p>　　初始化有两种方式：</p>
+<p>　　<strong>1、静态初始化：初始化时由我们显示赋值，由系统决定长度，即我们自己确定每个数组元素是什么，但是不规定长度。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String [] students=<span class="keyword">new</span> String[]</div><div class="line">&#123;</div><div class="line"> <span class="string">"西昌"</span>,<span class="string">"酒泉"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String [] students=</div><div class="line">&#123;</div><div class="line"> <span class="string">"西昌"</span>,<span class="string">"酒泉"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　<strong>2、动态初始化：初始化时我们只负责指定长度，不负责为数组元素赋值。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String [] students=<span class="keyword">new</span> String[<span class="number">3</span>];</div></pre></td></tr></table></figure>
+<p>　　当我们定义一个数组变量时，比如String [] students; students这个数组变量（引用变量）并没有指向一个有效的内存，直到我们完成了初始化后，students就会像一个指针一样，指向一个有效的数组对象。实际上初始化，并不是初始化对象的引用变量（students），而是对对象本身进行初始化（此处也就是系统为数组分配内存空间，将数组元素的值存入对应内存里）。</p>
+<p><img src="http://or0um8wrx.bkt.clouddn.com/17-6-4/38802436.jpg" alt=""></p>
+<p>　　<strong>对于Java中的所有引用变量，它们都不需要经过所谓初始化操作，需要进行初始化操作的只是该引用变量所对应的对象。引用变量只是栈内存中的变量本身，它的本质是一个指针，只有当引用变量调用方法，或者访问属性时，该引用变量才会由它所引用的对象代替。（补充：所有局部变量都是放在栈内保存，不论是基本类型变量（int a），还是引用类型变量(String [] students)都是存储在各自栈内；但引用类型变量所引用的对象（包括数组，普通Java对象）则总是存储在内存中）</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">System.out.println(students);	<span class="comment">//此时系统不会去访问students所引用的数组对象</span></div><div class="line"><span class="comment">/*</span></div><div class="line">	此时students访问了length属性，所以此刻程序自动访问students所引用的数组对象</div><div class="line">*/</div><div class="line">System.out.println(students.length);</div><div class="line">System.out.println(students[<span class="number">0</span>]);</div></pre></td></tr></table></figure>
+<p>　　此时我们就可以解释一个NullPointerException的一种情况了。当我们用引用变量访问实例属性，或者调用非静态方法时，如果该引用变量没有引用一个对象，程序就会发生空指针异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String []students;</div><div class="line">System.out.println(students.length);<span class="comment">//会抛出空指针异常</span></div></pre></td></tr></table></figure>
+<p>　　最后谈谈多维数组，多位数组的本质其实就是一维数组。如下图所示：</p>
+<p><img src="http://or0um8wrx.bkt.clouddn.com/17-6-4/80913328.jpg" alt=""></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Object[] obj1=<span class="keyword">new</span> Object[<span class="number">2</span>];	<span class="comment">//定义并且初始化一个一维数组</span></div><div class="line">obj1[<span class="number">1</span>]=<span class="keyword">new</span> Object[<span class="number">2</span>];</div><div class="line">Object[] obj2=(Object[])obj1[<span class="number">1</span>];    <span class="comment">//将obj[1]的值赋值给obj2</span></div><div class="line">......</div><div class="line">   <span class="comment">/*依次类推，定义的一个一维数组中的每个空间放置一个一维</span></div><div class="line">   数组，然后在放置的一维数组的空间内再放置一维数组，不断下去</div><div class="line">   这样其实就是一个多维数组了。就等同于创建如下类似的多维数组</div><div class="line">   Object[][][] obj=new Object[a][b][c];</div><div class="line">   */</div></pre></td></tr></table></figure>
+<p>　　今天分享就到这里，希望对大家有所收获。</p>
+<p>　　<font size="1">参考书籍：李刚《疯狂Java》</font></p>
 
       
     </div>
@@ -409,7 +409,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/css基础小技巧/" rel="tag"># css基础小技巧</a>
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/数组/" rel="tag"># 数组</a>
+          
+            <a href="/tags/内存/" rel="tag"># 内存</a>
           
         </div>
       
@@ -422,8 +426,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/18/jsp-js-servlet实现效验验证码/" rel="next" title="jsp+js+servlet实现验证码以及校验">
-                <i class="fa fa-chevron-left"></i> jsp+js+servlet实现验证码以及校验
+              <a href="/2017/06/02/Hibernate之多对多关联关系/" rel="next" title="Hibernate之多对多关联关系">
+                <i class="fa fa-chevron-left"></i> Hibernate之多对多关联关系
               </a>
             
           </div>
@@ -431,10 +435,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/02/Hibernate之一对多关联关系/" rel="prev" title="Hibernate之一对多关联关系">
-                Hibernate之一对多关联关系 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
