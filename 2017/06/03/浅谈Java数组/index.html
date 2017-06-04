@@ -99,7 +99,7 @@
 <meta property="og:description" content="Java中的数组是静态的，一旦初始化后，长度就不会改变。所谓初始化，就是为数组对象的元素分配内存空间，为每个数组元素指定初始化值。 　　初始化有两种方式： 　　1、静态初始化：初始化时由我们显示赋值，由系统决定长度，即我们自己确定每个数组元素是什么，但是不规定长度。 1234String [] students=new String[]&amp;#123; &quot;西昌&quot;,&quot;酒泉&quot;&amp;#125; 1234St">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-4/38802436.jpg">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-4/80913328.jpg">
-<meta property="og:updated_time" content="2017-06-04T12:34:25.875Z">
+<meta property="og:updated_time" content="2017-06-04T12:36:49.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Java数组">
 <meta name="twitter:description" content="Java中的数组是静态的，一旦初始化后，长度就不会改变。所谓初始化，就是为数组对象的元素分配内存空间，为每个数组元素指定初始化值。 　　初始化有两种方式： 　　1、静态初始化：初始化时由我们显示赋值，由系统决定长度，即我们自己确定每个数组元素是什么，但是不规定长度。 1234String [] students=new String[]&amp;#123; &quot;西昌&quot;,&quot;酒泉&quot;&amp;#125; 1234St">
@@ -377,9 +377,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String []students;</div><div class="line">System.out.println(students.length);<span class="comment">//会抛出空指针异常</span></div></pre></td></tr></table></figure>
 <p>　　最后谈谈多维数组，多位数组的本质其实就是一维数组。如下图所示：</p>
 <p><img src="http://or0um8wrx.bkt.clouddn.com/17-6-4/80913328.jpg" alt=""></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Object[] obj1=<span class="keyword">new</span> Object[<span class="number">2</span>];	<span class="comment">//定义并且初始化一个一维数组</span></div><div class="line">obj1[<span class="number">1</span>]=<span class="keyword">new</span> Object[<span class="number">2</span>];</div><div class="line">Object[] obj2=(Object[])obj1[<span class="number">1</span>];    <span class="comment">//将obj[1]的值赋值给obj2</span></div><div class="line">......</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Object[] obj1=<span class="keyword">new</span> Object[<span class="number">2</span>];	<span class="comment">//定义并且初始化一个一维数组</span></div><div class="line">obj1[<span class="number">1</span>]=<span class="keyword">new</span> Object[<span class="number">2</span>];</div><div class="line">Object[] obj2=(Object[])obj1[<span class="number">1</span>];    <span class="comment">//将obj[1]的值赋值给obj2</span></div><div class="line"><span class="comment">//......</span></div></pre></td></tr></table></figure>
 <p>　　依次类推，定义的一个一维数组中的每个空间放置一个一维数组，然后在放置的一维数组的空间内再放置一维数组，不断下去这样其实就是一个多维数组了。就等同于创建如下类似的多维数组：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object[][][] obj=<span class="keyword">new</span> Object[a][b][c];</div></pre></td></tr></table></figure>
+<p>Object[][][] obj=new Object[a][b][c];</p>
 <p>　　今天分享就到这里，希望对大家有所收获。</p>
 <p>　　<font size="1">参考书籍：李刚《疯狂Java》</font></p>
 
