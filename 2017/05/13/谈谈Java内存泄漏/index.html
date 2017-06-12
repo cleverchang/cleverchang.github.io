@@ -98,7 +98,8 @@
 <meta property="og:site_name" content="The Kite Runner">
 <meta property="og:description" content="虽然java凭借垃圾回收机制获得了很多人的青睐，但是java还是存在内存泄漏，那么内存泄漏是什么呢？我们可能听说过，却没有实在的了解过，今天这篇文章，就是来谈谈内存泄漏的。 ​    1、内存泄漏是什么？ 　　内存泄漏其实就是在一个程序中，一些没有用了的对象没有被回收，而继续占用着内存，造成了内存的浪费。（当然这是我自己的通俗话语。）百度上是这么说的：内存泄漏也称作“存储渗漏”，用动态存储分配">
 <meta property="og:image" content="http://i4.buimg.com/588926/c762618add7eef5c.png">
-<meta property="og:updated_time" content="2017-06-02T06:03:29.257Z">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-12/63481852.jpg">
+<meta property="og:updated_time" content="2017-06-12T00:42:09.204Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Java内存泄漏">
 <meta name="twitter:description" content="虽然java凭借垃圾回收机制获得了很多人的青睐，但是java还是存在内存泄漏，那么内存泄漏是什么呢？我们可能听说过，却没有实在的了解过，今天这篇文章，就是来谈谈内存泄漏的。 ​    1、内存泄漏是什么？ 　　内存泄漏其实就是在一个程序中，一些没有用了的对象没有被回收，而继续占用着内存，造成了内存的浪费。（当然这是我自己的通俗话语。）百度上是这么说的：内存泄漏也称作“存储渗漏”，用动态存储分配">
@@ -369,12 +370,26 @@
 <p>　　其实对象在内存中存在两种状态：一、没有被使用的对象，二、没有被引用的对象。没被使用的对象不一定会被回收，因为它可能被其他的对象引用了，而没有被引用的对象则一定会被回收，因为它既没有别的对象引用它，自己也没有被使用。所以当对象被引用的时候就可能存在了内存泄漏。用图表示就像这样：</p>
 <p><img src="http://i4.buimg.com/588926/c762618add7eef5c.png" alt=""></p>
 <p>　　对象A运行时间从T1到T2，在A运行中引用了对象B，而B对象在T2之前就不再使用，理应被java回收器回收，但是B对象被A对象引用，导致回收器无法将对象B回收，这就导致了内存泄漏。如果A对象引用了很多对象，那内存很多都无法回收，系统就会越来越慢了。</p>
-<p>　　<strong><em>3、如何防止内存泄漏？</em></strong></p>
+<p>　　<strong><em>3、四种引用简介</em></strong></p>
+<p>　　引用有四种，强引用，软引用，弱引用，虚引用，接下来一一介绍。</p>
+<p>　　<strong>强引用</strong>：强引用属于一旦引用，无不论垃圾回收机制是否启动，都不会将该对象回收。类似如下数组，就是强引用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Person [] p=<span class="keyword">new</span> Person[]&#123;<span class="string">"西昌"</span>,<span class="string">"酒泉"</span>&#125;</div></pre></td></tr></table></figure>
+<p>　　<strong>软引用</strong>：软引用属于当内存充足时，垃圾回收机制不会将其回收，当内存不充足时，软引用对象就会被回收。    </p>
+<p>　　<strong>弱引用</strong>：只要垃圾回收机制启动，无论内存是否充足，垃圾回收机制都会将其回收。</p>
+<p>　　<strong>虚引用</strong>：虚引用无法单独使用，需要和引用队列一起使用，虚引用对对象本身几乎毫无影响，只是用于跟踪对象回收状态，当对象回收后，虚引用引用变量会进入关联的引用队列中。</p>
+<p>　　<strong><em>4、如何防止内存泄漏？</em></strong></p>
 <p>　　（1）小心的使用static，并且注意HashMap,ArrayList等集合类，他们是经常发生内存泄漏的地方，如果你使用了static，那这个集合类基本就伴随程序从生到死了。</p>
 <p>　　（2）“如果一个类管理它自己的内存，程序员应该对内存泄漏保持警惕。”很多时候，当一个对象的成员变量指向其他对象时，不再使用时需要被设置为NULL。</p>
 <p>　　（3）注意事件监听器和回调，如果一个监听器已经被注册，但是当这个类不再被使用时却未被注销，就造成了内存泄漏。</p>
 <p>　　（4）小心的new对象，程序中不要new太多不必要的对象。</p>
-<p>　　<font size="1">参考文献:《thinging in java》,<a href="http://i4.buimg.com/588926/c762618add7eef5c.png" target="_blank" rel="external">ImportNew</a><font></font></font></p>
+<p>　　（5）需要更改字符串时，尽量使用StringBuffer和StringBuilder,StringBuffer是线程安全的，而当我们是单线程环境下，我们应该尽量使用StringBuilder来扩展字符串。如果直接使用String容易造成内存泄漏。</p>
+<p><img src="http://or0um8wrx.bkt.clouddn.com/17-6-12/63481852.jpg" alt=""></p>
+<p>　　如上图所示</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String str=<span class="string">"Hello"</span>;</div><div class="line">str=<span class="string">"Hello"</span>+<span class="string">"World"</span>;</div></pre></td></tr></table></figure>
+<p>　　当我们定义并让str指向hello时，内存中会分分配内存给hello，并且字符串池会将其缓存，当我们再次将str指向拼接的字符串HelloWorld时，String类型是不会变的，变化的是变量str指向的对象，此时str指向了HelloWorld,但是此刻字符串池中Hello仍然存在，并且不会被垃圾回收机制回收，这就造成了内存泄漏。</p>
+<p>　　（6）尽量不要对对象使用finalize()方法，不然会加大Java回收机制的负担，降低运行速度。</p>
+<p>　　（7）经常缓存使用的对象。</p>
+<p>　　<font size="1">参考文献:《thinking in java》,<a href="http://i4.buimg.com/588926/c762618add7eef5c.png" target="_blank" rel="external">ImportNew</a><font></font></font></p>
 
       
     </div>

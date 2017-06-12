@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://www.xichangblog.com/2017/05/13/%E8%B0%88%E8%B0%88Java%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</loc>
+    <lastmod>2017-06-12T00:42:09.204Z</lastmod>
+    <data>
+        <display>
+        <title>浅谈Java内存泄漏</title>
+        <pubTime>2017-05-13T13:07:38.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>内存</tag>
+         
+         
+           
+             
+              <breadCrumb title="Thinking in java" url="http://www.xichangblog.com/categories/Thinking-in-java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.xichangblog.com/2017/06/07/%E6%A2%A6%E5%9B%9E%E9%AB%98%E8%80%83/</loc>
     <lastmod>2017-06-07T01:50:37.118Z</lastmod>
     <data>
@@ -83,28 +105,6 @@
            
              
               <breadCrumb title="Hibernate" url="http://www.xichangblog.com/categories/Hibernate/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.xichangblog.com/2017/05/13/%E8%B0%88%E8%B0%88Java%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</loc>
-    <lastmod>2017-06-02T06:03:29.257Z</lastmod>
-    <data>
-        <display>
-        <title>浅谈Java内存泄漏</title>
-        <pubTime>2017-05-13T13:07:38.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-        <tag>内存</tag>
-         
-         
-           
-             
-              <breadCrumb title="Thinking in java" url="http://www.xichangblog.com/categories/Thinking-in-java/"/>
           
         </display>
     </data>
