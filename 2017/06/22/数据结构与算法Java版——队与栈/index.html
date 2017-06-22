@@ -1,0 +1,854 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java,数据结构,队与栈," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="数据结构一般都是由c++来讲解并且实现的，所以如果像我这种没学过c++而学过Java的就很尴尬了，不过不要以为Java不能实现数据结构那些常用的表啊，树啊之类的（不知道有没有同学以为Java没有指针，所以一些功能无法实现呢？这是错误的噢）。这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  栈　　栈是一种很">
+<meta name="keywords" content="java,数据结构,队与栈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法Java版——栈与队">
+<meta property="og:url" content="http://www.xichangblog.com/2017/06/22/数据结构与算法Java版——队与栈/index.html">
+<meta property="og:site_name" content="The Kite Runner">
+<meta property="og:description" content="数据结构一般都是由c++来讲解并且实现的，所以如果像我这种没学过c++而学过Java的就很尴尬了，不过不要以为Java不能实现数据结构那些常用的表啊，树啊之类的（不知道有没有同学以为Java没有指针，所以一些功能无法实现呢？这是错误的噢）。这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  栈　　栈是一种很">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-22/9442331.jpg">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-22/52927447.jpg">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-22/47418938.jpg">
+<meta property="og:image" content="http://i4.buimg.com/519918/6cb998536124e796.png">
+<meta property="og:updated_time" content="2017-06-22T13:33:53.358Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构与算法Java版——栈与队">
+<meta name="twitter:description" content="数据结构一般都是由c++来讲解并且实现的，所以如果像我这种没学过c++而学过Java的就很尴尬了，不过不要以为Java不能实现数据结构那些常用的表啊，树啊之类的（不知道有没有同学以为Java没有指针，所以一些功能无法实现呢？这是错误的噢）。这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  栈　　栈是一种很">
+<meta name="twitter:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-22/9442331.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.xichangblog.com/2017/06/22/数据结构与算法Java版——队与栈/"/>
+
+
+
+
+
+  <title>数据结构与算法Java版——栈与队 | The Kite Runner</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Kite Runner</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">practise makes perfect</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.xichangblog.com/2017/06/22/数据结构与算法Java版——队与栈/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="The Kite Runner">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Kite Runner">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构与算法Java版——栈与队</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-22T20:04:31+08:00">
+                2017-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构与算法Java版/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法Java版</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/06/22/数据结构与算法Java版——队与栈/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>　　数据结构一般都是由c++来讲解并且实现的，所以如果像我这种没学过c++而学过Java的就很尴尬了，不过不要以为Java不能实现数据结构那些常用的表啊，树啊之类的（不知道有没有同学以为Java没有指针，所以一些功能无法实现呢？这是错误的噢）。这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为<a href="http://blog.csdn.net/xichang702" target="_blank" rel="external">我的博客</a></p>
+</blockquote>
+<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a><center><em>栈</em></center></h1><p>　　栈是一种很奇特的结构，因为它是“先进后出”的，也就是一批进去的元素中，第一个进去的元素最后一个出来，如下图所示：</p>
+<p><img src="http://or0um8wrx.bkt.clouddn.com/17-6-22/9442331.jpg" alt=""></p>
+<p>　　看起来复杂的表面，其实底下仍然是数组实现的，也就是说，栈，其实是一种线性表，只是说进出元素都在栈底罢了。接下来就和各位一起实现一个简单的栈。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SequenceStack</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">	<span class="keyword">private</span> Object[] elementData;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> size;	<span class="comment">//栈中元素</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> capacity;</div><div class="line">	<span class="comment">//栈总长为capacity</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SequenceStack</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</div><div class="line">		elementData=<span class="keyword">new</span> Object[capacity];</div><div class="line">		<span class="keyword">this</span>.capacity=capacity;</div><div class="line">	&#125;</div><div class="line">  	</div><div class="line">  	<span class="comment">//获得栈中元素个数</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getLength</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> size;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//入栈</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(T element)</span></span>&#123;</div><div class="line">		elementData[size]=element;</div><div class="line">		size++;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//出栈</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span></span>&#123;</div><div class="line">		elementData[size-<span class="number">1</span>]=<span class="keyword">null</span>;</div><div class="line">		size--;</div><div class="line">	&#125;</div><div class="line">  </div><div class="line">	<span class="comment">//判断是否为空</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> size==<span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">  	<span class="comment">//清空栈中元素</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;</div><div class="line">		Arrays.fill(elementData, <span class="keyword">null</span>);</div><div class="line">		size=<span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">  	<span class="comment">//重写toString方法，让其输出栈中所有元素</span></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		StringBuilder sb=<span class="keyword">new</span> StringBuilder();</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=size-<span class="number">1</span>;i++)</div><div class="line">		&#123;</div><div class="line">			sb=sb.append(elementData[i]+<span class="string">" "</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> sb+<span class="string">""</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　撸以上几段小小代码，一个简单的栈就实现了，如果自己还想要什么方法，自己进行包装写出来就好了，之前说过LinkList是一个双向链表，如果查看API会发现它也提供了pop,peek,push等方法，这其实说明LinkList也是可以当作栈来用的，当然是链栈，链栈的实现基本和链表实现差不多，只是进出元素位置与单链表不同罢了。</p>
+<h1 id="队"><a href="#队" class="headerlink" title="队"></a><center><em>队</em></center></h1><p>　　队列是一种和栈一样，被限制了的线性表，它一端来插入元素，另一端删除元素，也就像我们平时生活中排队那样，一头买东西，买了走人，一头排队等候。因此，所以它是“先进先出”的。如下图所示：</p>
+<p><img src="http://or0um8wrx.bkt.clouddn.com/17-6-22/52927447.jpg" alt=""></p>
+<p>　　接下来重点讲解的是队的重要两种形式：</p>
+<ul>
+<li><strong>顺序队列</strong></li>
+<li><strong>循环队列</strong></li>
+</ul>
+<h2 id="顺序队列"><a href="#顺序队列" class="headerlink" title="顺序队列"></a><em><center>顺序队列</center></em></h2><p>　　顺序队列：顾名思义，就是按照顺序排的，排成一条线，前面走，后面来。底层仍然是数组作为基础，循环队列也是如此。接下来就一起撸代码吧。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SequenceQuene</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">	<span class="keyword">private</span> Object[] elementData;	<span class="comment">//底层数组</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> capacity;	<span class="comment">//队容量</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> front; <span class="comment">//队头</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> rear; <span class="comment">//队尾</span></div><div class="line">	</div><div class="line">  	<span class="comment">//顺序队的构造函数，初始化的时候会将队头队尾都等于0</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SequenceQuene</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</div><div class="line">		elementData=<span class="keyword">new</span> Object[capacity];</div><div class="line">		<span class="keyword">this</span>.capacity=capacity;</div><div class="line">		front=<span class="number">0</span>;</div><div class="line">		rear=<span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">  	<span class="comment">//判断队列是否为空</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> front==rear;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//队中元素个数</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getLength</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> rear-front;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">  	<span class="comment">//入队，队尾rear执行</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(T element)</span></span>&#123;</div><div class="line">		<span class="comment">//当队尾大于容量-1时，队满</span></div><div class="line">      	<span class="keyword">if</span>(rear&gt;capacity-<span class="number">1</span>)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"队满"</span>);</div><div class="line">		&#125;</div><div class="line">		elementData[rear]=element;</div><div class="line">		rear++;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">  	<span class="comment">//出队，队头front执行</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(front==<span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"队空"</span>);</div><div class="line">		&#125;</div><div class="line">		elementData[front]=<span class="keyword">null</span>;</div><div class="line">		front++;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">  	<span class="comment">//重写toString方法，让其输出队列</span></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		StringBuilder sb=<span class="keyword">new</span> StringBuilder();</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=front;i&lt;rear;i++)</div><div class="line">		&#123;</div><div class="line">			sb=sb.append(elementData[i]+<span class="string">" "</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> sb+<span class="string">""</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">  	<span class="comment">//清空队列，记得要把队头队尾设为0</span></div><div class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;</div><div class="line">		Arrays.fill(elementData, <span class="keyword">null</span>);</div><div class="line">		front=<span class="number">0</span>;</div><div class="line">		rear=<span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　其实对比顺序栈和顺序队列，我们可以发现他们很相似，区别只是删除插入方式有些不同罢了。但是上面这种方式实现的顺序队列有缺陷，比如当队头删除完(front=rear)，队尾添加满后（rear=capacity-1），就会发现队头等于队尾，这个时候既无法添加元素，也无法删除元素，这就造成了数组的浪费。</p>
+<p>　　针对以上这个问题，<strong>可以每次删除后，将整个队列中元素向前移动一位，也就是front被固定，队尾rear=rear-1,但是这么做，如果队列大的话，每次移动的元素就太多，性能会大幅下降。</strong>于是我们就有另一个比较好的办法：</p>
+<h2 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a><em><center>循环队列</center></em></h2><p><img src="http://or0um8wrx.bkt.clouddn.com/17-6-22/47418938.jpg" alt=""></p>
+<p>　　循环队列就很好的解决了上面那个问题，而且不需要移动任何元素，性能得到了很好的提升，不过需要注意几点：（front和rear为队头，队尾，capacity为数组容量）</p>
+<ol>
+<li><strong>返回队列长度时，需要搞清front和rear谁大，如果rear大则长度为rear-front，反之则为capacity-front+rear。</strong></li>
+<li><strong>判断是否队列为空时，要同时满足rear=ftront和rear处的元素值为空。</strong></li>
+<li><strong>插入删除元素时，如果rear和front达到临界值，下一次执行插入删除，rear和front需要“掉头”。</strong></li>
+<li><strong>遍历时，要根据front和rear的大小进行遍历，若rear大,直接遍历一部分即可，如果front&gt;rear,则分front-capacity和0-rear两部分遍历。</strong></li>
+</ol>
+<p>　　接下来就是实现的具体步骤了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CircleQuene</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">	<span class="keyword">private</span> Object[] elementData;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> capacity;	<span class="comment">//队容量</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> front; <span class="comment">//队头</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> rear; <span class="comment">//队尾</span></div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CircleQuene</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</div><div class="line">		elementData=<span class="keyword">new</span> Object[capacity];</div><div class="line">		<span class="keyword">this</span>.capacity=capacity;</div><div class="line">		front=<span class="number">0</span>;</div><div class="line">		rear=<span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">  	<span class="comment">//判断循环队列是否为空</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> rear==front&amp;&amp;elementData[rear]==<span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">	 </div><div class="line">	<span class="comment">//当队尾大于队头与队尾小于队头两种情况</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getLength</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> rear&gt;front ? rear-front:capacity-front+rear;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(T element)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(front==rear&amp;&amp;elementData[rear]!=<span class="keyword">null</span>)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"队满"</span>);</div><div class="line">		&#125;</div><div class="line">		elementData[rear++]=element;</div><div class="line">		<span class="comment">//如果rear到头了就从零开始</span></div><div class="line">		<span class="keyword">if</span>(rear&gt;capacity-<span class="number">1</span>)&#123;</div><div class="line">			rear=<span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">  	<span class="comment">//删除元素</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(isEmpty())&#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"队空"</span>);</div><div class="line">		&#125;</div><div class="line">		elementData[front++]=<span class="keyword">null</span>;</div><div class="line">		<span class="comment">//front达到临界值，“掉头”</span></div><div class="line">      	<span class="keyword">if</span>(front&gt;capacity-<span class="number">1</span>)&#123;</div><div class="line">			front=<span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//清空队列</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;</div><div class="line">		Arrays.fill(elementData, <span class="keyword">null</span>);</div><div class="line">		front=<span class="number">0</span>;</div><div class="line">		rear=<span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//如果rear大于front，只需直接遍历即可，反之则分两部分遍历</span></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		StringBuilder sb=<span class="keyword">new</span> StringBuilder();</div><div class="line">		<span class="keyword">if</span>(rear&gt;front)&#123;</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=front;i&lt;rear;i++)</div><div class="line">			&#123;</div><div class="line">				sb=sb.append(elementData[i]+<span class="string">" "</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=front;i&lt;capacity;i++)</div><div class="line">			&#123;</div><div class="line">				sb=sb.append(elementData[i]+<span class="string">" "</span>);</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;rear;i++)</div><div class="line">			&#123;</div><div class="line">				sb=sb.append(elementData[i]+<span class="string">" "</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> sb+<span class="string">""</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　到此，循环队列就实现了，队列还有其他一些类型，链队列，双向队列（LinkList也是一种特殊的双向链式队列，应该算是JDK提供的集合类里面方法 最多的了，毕竟这小伙子什么都沾边了）等，但是实现方法都与上面的类似，这里就不一一实现了。</p>
+<p>　　今天分享到此结束啦，下一次就进入<strong>树结构</strong>啦。</p>
+<p><img src="http://i4.buimg.com/519918/6cb998536124e796.png" alt=""></p>
+<blockquote>
+<p>　　生活不仅有技术，还有诗和远方。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/队与栈/" rel="tag"># 队与栈</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/21/数据结构与算法Java版——双向链表/" rel="next" title="数据结构与算法Java版——双向链表">
+                <i class="fa fa-chevron-left"></i> 数据结构与算法Java版——双向链表
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="The Kite Runner" />
+          <p class="site-author-name" itemprop="name">The Kite Runner</p>
+           
+              <p class="site-description motion-element" itemprop="description">吾生有涯，而知也无涯</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xichang666" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/fa2da21ee7a7/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net//xichang702" target="_blank" title="csdn">
+                  
+                    <i class="fa fa-fw fa-anchor"></i>
+                  
+                  csdn
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://hanwenblog.cn" target="_blank" title="好友博客">
+                  
+                    <i class="fa fa-fw fa-sign-in"></i>
+                  
+                  好友博客
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#栈"><span class="nav-number">1.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#队"><span class="nav-number">2.</span> <span class="nav-text">队</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序队列"><span class="nav-number">2.1.</span> <span class="nav-text">顺序队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环队列"><span class="nav-number">2.2.</span> <span class="nav-text">循环队列</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<center>
+<div>
+<span class="with-love"><i class="fa fa-star"></i></span>
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本网站总访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+<span class="with-love"><i class="fa fa-star"></i></span>
+</div>
+</center>
+<center>
+<div class="theme-info">  
+  <span class="post-count">版权为作者所有，转发请注明地址</span>
+</div>
+</center>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4b4b90c549814eafa985e7f92cf0d17a",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+
+  
+</body>
+</html>
