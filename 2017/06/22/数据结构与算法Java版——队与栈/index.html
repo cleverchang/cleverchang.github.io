@@ -90,21 +90,21 @@
 
 
 
-<meta name="description" content="数据结构一般都是由c++来讲解并且实现的，所以如果像我这种没学过c++而学过Java的就很尴尬了，不过不要以为Java不能实现数据结构那些常用的表啊，树啊之类的（不知道有没有同学以为Java没有指针，所以一些功能无法实现呢？这是错误的噢）。这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  栈　　栈是一种很">
+<meta name="description" content="栈和队是什么？可能以前没接触过的就会很陌生，甚至不知道怎么用java实现一个栈和队列，感觉很高大上的它们，今天将被揭开庐山真面目…… 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  栈　　栈是一种很奇特的结构，因为它是“先进后出”的，也就是一批进去的元素中，第一个进去的元素最后一个出来，如下图所示：">
 <meta name="keywords" content="java,数据结构,队与栈">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法Java版——栈与队">
 <meta property="og:url" content="http://www.xichangblog.com/2017/06/22/数据结构与算法Java版——队与栈/index.html">
 <meta property="og:site_name" content="The Kite Runner">
-<meta property="og:description" content="数据结构一般都是由c++来讲解并且实现的，所以如果像我这种没学过c++而学过Java的就很尴尬了，不过不要以为Java不能实现数据结构那些常用的表啊，树啊之类的（不知道有没有同学以为Java没有指针，所以一些功能无法实现呢？这是错误的噢）。这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  栈　　栈是一种很">
+<meta property="og:description" content="栈和队是什么？可能以前没接触过的就会很陌生，甚至不知道怎么用java实现一个栈和队列，感觉很高大上的它们，今天将被揭开庐山真面目…… 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  栈　　栈是一种很奇特的结构，因为它是“先进后出”的，也就是一批进去的元素中，第一个进去的元素最后一个出来，如下图所示：">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-22/9442331.jpg">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-22/52927447.jpg">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-22/47418938.jpg">
 <meta property="og:image" content="http://i4.buimg.com/519918/6cb998536124e796.png">
-<meta property="og:updated_time" content="2017-06-22T13:33:53.358Z">
+<meta property="og:updated_time" content="2017-06-23T09:23:23.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法Java版——栈与队">
-<meta name="twitter:description" content="数据结构一般都是由c++来讲解并且实现的，所以如果像我这种没学过c++而学过Java的就很尴尬了，不过不要以为Java不能实现数据结构那些常用的表啊，树啊之类的（不知道有没有同学以为Java没有指针，所以一些功能无法实现呢？这是错误的噢）。这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  栈　　栈是一种很">
+<meta name="twitter:description" content="栈和队是什么？可能以前没接触过的就会很陌生，甚至不知道怎么用java实现一个栈和队列，感觉很高大上的它们，今天将被揭开庐山真面目…… 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  栈　　栈是一种很奇特的结构，因为它是“先进后出”的，也就是一批进去的元素中，第一个进去的元素最后一个出来，如下图所示：">
 <meta name="twitter:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-22/9442331.jpg">
 
 
@@ -375,7 +375,8 @@
 
       
         <blockquote>
-<p>　　数据结构一般都是由c++来讲解并且实现的，所以如果像我这种没学过c++而学过Java的就很尴尬了，不过不要以为Java不能实现数据结构那些常用的表啊，树啊之类的（不知道有没有同学以为Java没有指针，所以一些功能无法实现呢？这是错误的噢）。这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为<a href="http://blog.csdn.net/xichang702" target="_blank" rel="external">我的博客</a></p>
+<p>　　栈和队是什么？可能以前没接触过的就会很陌生，甚至不知道怎么用java实现一个栈和队列，感觉很高大上的它们，今天将被揭开庐山真面目……</p>
+<p>　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为<a href="http://blog.csdn.net/xichang702" target="_blank" rel="external">我的博客</a></p>
 </blockquote>
 <h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a><center><em>栈</em></center></h1><p>　　栈是一种很奇特的结构，因为它是“先进后出”的，也就是一批进去的元素中，第一个进去的元素最后一个出来，如下图所示：</p>
 <p><img src="http://or0um8wrx.bkt.clouddn.com/17-6-22/9442331.jpg" alt=""></p>
@@ -464,6 +465,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/23/数据结构与算法Java版——树的两种表现方式/" rel="prev" title="数据结构与算法Java版——树的两种表现方式">
+                数据结构与算法Java版——树的两种表现方式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -559,7 +564,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -581,7 +586,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

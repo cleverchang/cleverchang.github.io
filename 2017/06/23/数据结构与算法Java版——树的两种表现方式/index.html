@@ -1,0 +1,838 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java,数据结构,树," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="树我觉得是数据结果中一个比较繁琐的内容了，树的表达方式有很多种，什么双亲表示法，什么双亲孩子表示法啥的，树的遍历方式也多种多样，前序，中序，后序，层序等等，今天介绍的就是树的两种表示方法。 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  　　今天主要介绍的如何实现两种树表现方式，双亲表示法和孩子链表">
+<meta name="keywords" content="java,数据结构,树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法Java版——树的两种表现方式">
+<meta property="og:url" content="http://www.xichangblog.com/2017/06/23/数据结构与算法Java版——树的两种表现方式/index.html">
+<meta property="og:site_name" content="The Kite Runner">
+<meta property="og:description" content="树我觉得是数据结果中一个比较繁琐的内容了，树的表达方式有很多种，什么双亲表示法，什么双亲孩子表示法啥的，树的遍历方式也多种多样，前序，中序，后序，层序等等，今天介绍的就是树的两种表示方法。 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  　　今天主要介绍的如何实现两种树表现方式，双亲表示法和孩子链表">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-24/18478764.jpg">
+<meta property="og:updated_time" content="2017-06-24T03:41:29.338Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构与算法Java版——树的两种表现方式">
+<meta name="twitter:description" content="树我觉得是数据结果中一个比较繁琐的内容了，树的表达方式有很多种，什么双亲表示法，什么双亲孩子表示法啥的，树的遍历方式也多种多样，前序，中序，后序，层序等等，今天介绍的就是树的两种表示方法。 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  　　今天主要介绍的如何实现两种树表现方式，双亲表示法和孩子链表">
+<meta name="twitter:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-24/18478764.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.xichangblog.com/2017/06/23/数据结构与算法Java版——树的两种表现方式/"/>
+
+
+
+
+
+  <title>数据结构与算法Java版——树的两种表现方式 | The Kite Runner</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Kite Runner</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">practise makes perfect</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.xichangblog.com/2017/06/23/数据结构与算法Java版——树的两种表现方式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="The Kite Runner">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Kite Runner">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构与算法Java版——树的两种表现方式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-23T17:13:56+08:00">
+                2017-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构与算法Java版/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法Java版</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/06/23/数据结构与算法Java版——树的两种表现方式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>　　树我觉得是数据结果中一个比较繁琐的内容了，树的表达方式有很多种，什么双亲表示法，什么双亲孩子表示法啥的，树的遍历方式也多种多样，前序，中序，后序，层序等等，今天介绍的就是树的两种表示方法。</p>
+<p>　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为<a href="http://blog.csdn.net/xichang702" target="_blank" rel="external">我的博客</a></p>
+</blockquote>
+<p>　　今天主要介绍的如何实现两种树表现方式，双亲表示法和孩子链表表示法。</p>
+<h2 id="双亲表示法"><a href="#双亲表示法" class="headerlink" title="　　双亲表示法"></a>　　<center><em>双亲表示法</em></center></h2><p>　　<strong>顾名思义就是树中每个除根节点以外的每个节点都有父节点，当我们为每个节点添加一个父节点记录父节点时，这就是孩子的双亲表示法。说白了就是为每个节点添加一个父节点属性，以此来记录父节点，方便查找，当然除了根节点以外，毕竟根节点没有父节点。</strong></p>
+<p>　　下面就是具体步骤了：</p>
+<p>　　创建节点类Node:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">	T data;	<span class="comment">//节点元素</span></div><div class="line">	<span class="keyword">int</span> parent;	<span class="comment">//父节点位置</span></div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">()</span> </span>&#123;	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(T data,<span class="keyword">int</span> parent)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.data=data;</div><div class="line">		<span class="keyword">this</span>.parent=parent;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.data+<span class="string">""</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　然后创建ParentTree类，并实现一系列方法，就OK了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//孩子的双亲表示法</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ParentTree</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> treeSize=<span class="number">0</span>;		<span class="comment">//自己指定的树大小</span></div><div class="line">	</div><div class="line">	<span class="keyword">private</span> Node&lt;T&gt;[] nodes;	<span class="comment">//用一个Node数组记录树里面所有节点</span></div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> nodeNums;   <span class="comment">//记录节点数</span></div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ParentTree</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//以指定的根节点和大小创建树</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ParentTree</span><span class="params">(T data,<span class="keyword">int</span> treeSize)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.treeSize=treeSize;</div><div class="line">		nodes=<span class="keyword">new</span> Node[treeSize];</div><div class="line">		nodes[<span class="number">0</span>]=<span class="keyword">new</span> Node(data, -<span class="number">1</span>);</div><div class="line">		nodeNums++;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//添加节点</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addNode</span><span class="params">(T data,Node parent)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(nodeNums==treeSize)&#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"树已满"</span>);</div><div class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">				<span class="comment">// TODO Auto-generated catch block</span></div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;treeSize;i++)</div><div class="line">		&#123;</div><div class="line">			<span class="comment">//第一个为null的地方添加节点</span></div><div class="line">			<span class="keyword">if</span>(nodes[i]==<span class="keyword">null</span>)&#123;</div><div class="line">				nodes[i]=<span class="keyword">new</span> Node(data, getNodeIndex(parent));</div><div class="line">				nodeNums++;</div><div class="line">				<span class="keyword">break</span>;	<span class="comment">//添加后就结束循环</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//找到指定节点对应的序号</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getNodeIndex</span><span class="params">(Node node)</span></span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;treeSize;i++)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span>(nodes[i]==node)&#123;</div><div class="line">				<span class="keyword">return</span> i;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//判断树是否为空</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="comment">//判断根节点是否为空</span></div><div class="line">		<span class="keyword">return</span> nodes[<span class="number">0</span>]==<span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//获得指定节点的子节点</span></div><div class="line">	<span class="keyword">public</span> List&lt;Node&lt;T&gt;&gt; getAllChildren(Node parent)&#123;</div><div class="line">		List&lt;Node&lt;T&gt;&gt; list=<span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;treeSize;i++)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span>(nodes[i].parent!=-<span class="number">1</span>&amp;&amp;nodes[i].parent==getNodeIndex(parent))&#123;</div><div class="line">				list.add(nodes[i]);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> list;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//获得节点深度，通过获取当前节点，并初始化深度等于1，再向上找父节点，每找到一个父节点深度加1</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getDeep</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> maxDeep=<span class="number">0</span>; 	<span class="comment">//最大深度</span></div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;treeSize&amp;&amp;nodes[i]!=<span class="keyword">null</span>;i++)</div><div class="line">		&#123;</div><div class="line">			<span class="comment">//初始化当前结点深度</span></div><div class="line">			<span class="keyword">int</span> index=<span class="number">1</span>;</div><div class="line">			<span class="comment">//获得其父节点位置</span></div><div class="line">			<span class="keyword">int</span> m=nodes[i].parent;</div><div class="line">			<span class="keyword">while</span>(m!=-<span class="number">1</span>&amp;&amp;nodes[m]!=<span class="keyword">null</span>)&#123;</div><div class="line">				m=nodes[m].parent;	<span class="comment">//继续向上搜索父节点 </span></div><div class="line">				index++;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span>(maxDeep&lt;index)&#123;</div><div class="line">				maxDeep=index;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> maxDeep;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//获得根节点</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Node <span class="title">getRoot</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> nodes[<span class="number">0</span>];</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　这样一颗树就可以轻松表示出来了，但从代码可以看出，这种结构的特点：</p>
+<p>　　<strong>这种结构却可以轻松找出指定节点的父节点，但当要找出某节点的所有子节点需要遍历整个树，时间花费长。</strong></p>
+<h2 id="孩子链表表示法"><a href="#孩子链表表示法" class="headerlink" title="孩子链表表示法"></a><center><em>孩子链表表示法</em></center></h2><p>　　<strong>孩子链表表示法，是一种用多个单链表表示树的方法，即把每个节点孩子排列起来，看成是一个线性表，且以单链表存储。</strong>如下图所示：</p>
+<p>　　<strong>在孩子链表表示法中存在两类节点：孩子节点和表头节点。右边的所有节点</strong>，比如3-&gt;5即子节点链表，子节点链表中包含的所有子节点都是孩子节点，需要记录数组下标和下一个节点是什么。</p>
+<p><img src="http://or0um8wrx.bkt.clouddn.com/17-6-24/18478764.jpg" alt=""></p>
+<p>　　两类节点实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SonNode</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">	<span class="comment">//记录当前节点位置，即上图中数组下标</span></div><div class="line">	<span class="keyword">public</span> <span class="keyword">int</span> pos;</div><div class="line">	<span class="keyword">public</span> SonNode next;	<span class="comment">//孩子节点的下一个</span></div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SonNode</span><span class="params">(<span class="keyword">int</span> pos,SonNode next)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.pos=pos;</div><div class="line">		<span class="keyword">this</span>.next=next;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//表头节点</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">	T data;</div><div class="line">	SonNode first;	<span class="comment">//子节点链表的头节点</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(T data, SonNode sonNode)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>();</div><div class="line">		<span class="keyword">this</span>.data = data;</div><div class="line">		<span class="keyword">this</span>.first = sonNode;</div><div class="line">	&#125;</div><div class="line">		</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.data+<span class="string">""</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　创建树并实现所有方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//孩子链表表示法</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChildTree</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> treeSize=<span class="number">0</span>;<span class="comment">//树大小</span></div><div class="line">	Node[] nodes;	<span class="comment">//一个数组存储所有表节点</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> nums=<span class="number">0</span>;</div><div class="line">	</div><div class="line">	<span class="comment">//以指定元素和大小创建一棵树</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ChildTree</span><span class="params">(<span class="keyword">int</span> treeSize,T data)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.treeSize=treeSize;</div><div class="line">		nodes=<span class="keyword">new</span> Node[treeSize];</div><div class="line">		Node node=<span class="keyword">new</span> Node(data, <span class="keyword">null</span>);</div><div class="line">		nodes[<span class="number">0</span>]=node;</div><div class="line">		nums++;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//添加节点</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addNode</span><span class="params">(T data,Node parent)</span></span>&#123;</div><div class="line">		<span class="comment">//判断树是否满</span></div><div class="line">      	<span class="keyword">if</span>(nums==treeSize)&#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"树已满"</span>);</div><div class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">				<span class="comment">// TODO Auto-generated catch block</span></div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">//如果父节点不为空</span></div><div class="line">		<span class="keyword">if</span>(parent!=<span class="keyword">null</span>)&#123;</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;treeSize;i++)</div><div class="line">			&#123;</div><div class="line">				<span class="comment">//查找到第一个为null的位置，再添加节点</span></div><div class="line">				<span class="keyword">if</span>(nodes[i]==<span class="keyword">null</span>)</div><div class="line">				&#123;</div><div class="line">					 Node node=<span class="keyword">new</span> Node(data, <span class="keyword">null</span>);</div><div class="line">					 SonNode sonNode=<span class="keyword">new</span> SonNode(i, <span class="keyword">null</span>);</div><div class="line">					 <span class="keyword">if</span>(parent.first==<span class="keyword">null</span>)&#123;</div><div class="line">                         <span class="comment">//如果指定节点没有子节点</span></div><div class="line">						 parent.first=sonNode;	</div><div class="line">					 &#125;<span class="keyword">else</span>&#123;</div><div class="line">						 <span class="comment">//如果有子节点则一直遍历到子节点为空的地方，添加子节点</span></div><div class="line">						 SonNode sNode=parent.first;</div><div class="line">						 <span class="keyword">while</span>(sNode.next!=<span class="keyword">null</span>)&#123;</div><div class="line">							 sNode=sNode.next;	</div><div class="line">						 &#125;</div><div class="line">						 sNode.next=sonNode;</div><div class="line">					 &#125;</div><div class="line">					 nodes[i]=node;</div><div class="line">					 nums++;</div><div class="line">					 <span class="keyword">break</span>;		<span class="comment">//一定要结束循环，不然会一直下去</span></div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//返回指定节点的所有子节点</span></div><div class="line">	<span class="function"><span class="keyword">public</span> List&lt;Node&gt; <span class="title">getALLChildNodes</span><span class="params">(Node parent)</span></span>&#123;</div><div class="line">		List&lt;Node&gt; list=<span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">		<span class="keyword">if</span>(parent.first==<span class="keyword">null</span>)&#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			SonNode sonNode=parent.first;</div><div class="line">			<span class="keyword">while</span>(sonNode!=<span class="keyword">null</span>)&#123;</div><div class="line">				list.add(nodes[sonNode.pos]);</div><div class="line">				sonNode=sonNode.next;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> list;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//获得节点总数</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getNodesNums</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> nums;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">  	<span class="comment">//判断是否为空</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> nodes[<span class="number">0</span>]==<span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">  	<span class="comment">//递归获取深度</span></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">deep</span><span class="params">(Node node)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(node.first==<span class="keyword">null</span>)&#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">int</span> max=<span class="number">0</span>;	<span class="comment">//最大的深度</span></div><div class="line">			SonNode next=node.first;</div><div class="line">			<span class="keyword">while</span>(next!=<span class="keyword">null</span>)&#123;</div><div class="line">				<span class="comment">//递归遍历</span></div><div class="line">				<span class="keyword">int</span> def=deep(nodes[next.pos]);</div><div class="line">				<span class="keyword">if</span>(def&gt;max)&#123;</div><div class="line">					max=def;</div><div class="line">				&#125;</div><div class="line">				next=next.next;</div><div class="line">			&#125;</div><div class="line">			<span class="comment">//因为获得的是根节点的子树深度，所以还要加1</span></div><div class="line">			<span class="keyword">return</span> max+<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//获得树的深度</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getDeep</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> deep(nodes[<span class="number">0</span>]);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　通过上面代码可以看出（如果自己实现了），<strong>孩子链表表示法特点是：每个节点都可以快速找到它的子节点，但是找某节点父节点就需要遍历整个节点数组。</strong></p>
+<p>　　建议小伙伴认真实现下上面两种操作，当自己能亲手实现后才真正了解了这两种表达方式的特点和实现方式。下一期将分享二叉树的的实现和各种遍历啦。😀😎</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/树/" rel="tag"># 树</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/22/数据结构与算法Java版——队与栈/" rel="next" title="数据结构与算法Java版——栈与队">
+                <i class="fa fa-chevron-left"></i> 数据结构与算法Java版——栈与队
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="The Kite Runner" />
+          <p class="site-author-name" itemprop="name">The Kite Runner</p>
+           
+              <p class="site-description motion-element" itemprop="description">吾生有涯，而知也无涯</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xichang666" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/fa2da21ee7a7/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net//xichang702" target="_blank" title="csdn">
+                  
+                    <i class="fa fa-fw fa-anchor"></i>
+                  
+                  csdn
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://hanwenblog.cn" target="_blank" title="好友博客">
+                  
+                    <i class="fa fa-fw fa-sign-in"></i>
+                  
+                  好友博客
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#双亲表示法"><span class="nav-number">1.</span> <span class="nav-text">　　双亲表示法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#孩子链表表示法"><span class="nav-number">2.</span> <span class="nav-text">孩子链表表示法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<center>
+<div>
+<span class="with-love"><i class="fa fa-star"></i></span>
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本网站总访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+<span class="with-love"><i class="fa fa-star"></i></span>
+</div>
+</center>
+<center>
+<div class="theme-info">  
+  <span class="post-count">版权为作者所有，转发请注明地址</span>
+</div>
+</center>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4b4b90c549814eafa985e7f92cf0d17a",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+
+  
+</body>
+</html>
