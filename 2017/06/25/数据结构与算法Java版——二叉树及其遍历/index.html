@@ -1,0 +1,862 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java,数据结构,树," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="二叉树可以用顺序存储结构表示，也可以用二叉链表表示，但顺序存储结构一般仅适合于存储完全二叉树…… 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  二叉树之二叉链表　　二叉树可以用顺序存储结构表示，也可以用二叉链表表示，但顺序存储结构一般仅适合于存储完全二叉树，如果不是存储一棵满二叉树，都会造成一定存">
+<meta name="keywords" content="java,数据结构,树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法Java版——二叉树及其遍历">
+<meta property="og:url" content="http://www.xichangblog.com/2017/06/25/数据结构与算法Java版——二叉树及其遍历/index.html">
+<meta property="og:site_name" content="The Kite Runner">
+<meta property="og:description" content="二叉树可以用顺序存储结构表示，也可以用二叉链表表示，但顺序存储结构一般仅适合于存储完全二叉树…… 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  二叉树之二叉链表　　二叉树可以用顺序存储结构表示，也可以用二叉链表表示，但顺序存储结构一般仅适合于存储完全二叉树，如果不是存储一棵满二叉树，都会造成一定存">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-25/85542292.jpg">
+<meta property="og:updated_time" content="2017-06-25T14:03:14.741Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构与算法Java版——二叉树及其遍历">
+<meta name="twitter:description" content="二叉树可以用顺序存储结构表示，也可以用二叉链表表示，但顺序存储结构一般仅适合于存储完全二叉树…… 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  二叉树之二叉链表　　二叉树可以用顺序存储结构表示，也可以用二叉链表表示，但顺序存储结构一般仅适合于存储完全二叉树，如果不是存储一棵满二叉树，都会造成一定存">
+<meta name="twitter:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-25/85542292.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.xichangblog.com/2017/06/25/数据结构与算法Java版——二叉树及其遍历/"/>
+
+
+
+
+
+  <title>数据结构与算法Java版——二叉树及其遍历 | The Kite Runner</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Kite Runner</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">practise makes perfect</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.xichangblog.com/2017/06/25/数据结构与算法Java版——二叉树及其遍历/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="The Kite Runner">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Kite Runner">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构与算法Java版——二叉树及其遍历</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-25T20:46:29+08:00">
+                2017-06-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构与算法Java版/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法Java版</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/06/25/数据结构与算法Java版——二叉树及其遍历/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>　　二叉树可以用顺序存储结构表示，也可以用二叉链表表示，但顺序存储结构一般仅适合于存储完全二叉树……</p>
+<p>　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为<a href="http://blog.csdn.net/xichang702" target="_blank" rel="external">我的博客</a></p>
+</blockquote>
+<h1 id="二叉树之二叉链表"><a href="#二叉树之二叉链表" class="headerlink" title="二叉树之二叉链表"></a><center><strong>二叉树之二叉链表</strong></center></h1><p>　　二叉树可以用顺序存储结构表示，也可以用二叉链表表示，但<strong>顺序存储结构一般仅适合于存储完全二叉树，如果不是存储一棵满二叉树，都会造成一定存储空间的浪费，尤其当存储一颗右斜树时，会造成存储空间的极大浪费，最坏的情况就是这种</strong>，如下图：</p>
+<p><img src="http://or0um8wrx.bkt.clouddn.com/17-6-25/85542292.jpg" alt=""></p>
+<p>　　所以我们一般用二叉链表表示二叉树，其基本思路：<strong>令每个节点对应一个链表节点，链表节点不仅存储二叉树节点有关数据信息，还要设置左右孩子节点。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> &lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">	Node lChild;  <span class="comment">//左子树</span></div><div class="line">	Node rChild;  <span class="comment">//右子树</span></div><div class="line">	T data;	<span class="comment">//数据</span></div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(Node lChild, Node rChild, T data)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>();</div><div class="line">		<span class="keyword">this</span>.lChild = lChild;</div><div class="line">		<span class="keyword">this</span>.rChild = rChild;</div><div class="line">		<span class="keyword">this</span>.data = data;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　接下来就是创建二叉树类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BinaryTree</span> &lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> nodeNum;	<span class="comment">//节点数</span></div><div class="line">	<span class="keyword">public</span> Node root;	<span class="comment">//根节点</span></div><div class="line">	</div><div class="line">	<span class="comment">//以某节点为根节点创建二叉链表</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">BinaryTree</span><span class="params">(T data)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.root=<span class="keyword">new</span> Node(<span class="keyword">null</span>, <span class="keyword">null</span>, data);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> parent 指定节点</div><div class="line">	 * <span class="doctag">@param</span> data 添加节点数据</div><div class="line">	 * <span class="doctag">@param</span> pos 节点位置 0为左，1为右</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> Node <span class="title">addNode</span><span class="params">(Node parent,T data,<span class="keyword">int</span> pos)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(parent==<span class="keyword">null</span>)&#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"该节点为空，无法添加节点"</span>);</div><div class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">				<span class="comment">// TODO Auto-generated catch block</span></div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">if</span>(pos==<span class="number">0</span>&amp;&amp;parent.lChild==<span class="keyword">null</span>)&#123;</div><div class="line">				<span class="comment">//添加左子树</span></div><div class="line">				parent.lChild=<span class="keyword">new</span> Node(<span class="keyword">null</span>, <span class="keyword">null</span>, data);</div><div class="line">				nodeNum++;</div><div class="line">				<span class="keyword">return</span> parent.lChild;</div><div class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(pos==<span class="number">1</span>&amp;&amp;parent.rChild==<span class="keyword">null</span>)&#123;</div><div class="line">				<span class="comment">//添加右子树</span></div><div class="line">				parent.rChild=<span class="keyword">new</span> Node(<span class="keyword">null</span>, <span class="keyword">null</span>, data);</div><div class="line">				nodeNum++;</div><div class="line">				<span class="keyword">return</span> parent.rChild;</div><div class="line">			&#125;<span class="keyword">else</span>&#123;</div><div class="line">				<span class="keyword">try</span> &#123;</div><div class="line">					<span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"节点无法再添加节点"</span>);</div><div class="line">				&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">					<span class="comment">// TODO Auto-generated catch block</span></div><div class="line">					e.printStackTrace();</div><div class="line">				&#125;</div><div class="line">			&#125;	</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> root.data==<span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//递归获得深度</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">deep</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> deep(root);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">private</span>  <span class="keyword">int</span> <span class="title">deep</span><span class="params">(Node root)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(root.lChild==<span class="keyword">null</span>&amp;&amp;root.rChild==<span class="keyword">null</span>)&#123;</div><div class="line">			<span class="comment">//根节点孩子为null时，树深度为1</span></div><div class="line">          	<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">int</span> lDeep=deep(root.lChild);</div><div class="line">			<span class="keyword">int</span> rDeep=deep(root.rChild);</div><div class="line">          	<span class="comment">//比较左右子树深度</span></div><div class="line">			<span class="keyword">int</span> max=lDeep&gt;rDeep? lDeep:rDeep;</div><div class="line">			<span class="keyword">return</span> max+<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　以上就用二叉链表表示了二叉树。</p>
+<h1 id="四种遍历"><a href="#四种遍历" class="headerlink" title="四种遍历"></a><center><strong>四种遍历</strong></center></h1><h2 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a><center><strong>前序遍历</strong></center></h2><p>　　<strong>前序遍历二叉树操作定义：</strong></p>
+<p>　　<strong>若二叉树为空，则空操作返回；否则</strong></p>
+<ol>
+<li><strong>访问根节点</strong></li>
+<li><strong>前序遍历根节点的左子树</strong></li>
+<li><strong>前序遍历根节点的右子树</strong></li>
+</ol>
+<p>　　这里我分享三种前序遍历的方法：</p>
+<p>　　方法一：（自己写的，感觉挺累赘的）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//前序遍历,递归实现前序遍历</span></div><div class="line"><span class="function"><span class="keyword">private</span> String <span class="title">preTraversal</span><span class="params">(Node node)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(node.lChild==<span class="keyword">null</span>&amp;&amp;node.rChild==<span class="keyword">null</span>)&#123;</div><div class="line">		<span class="keyword">return</span> node.data+<span class="string">""</span>;</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		StringBuilder sb=<span class="keyword">new</span> StringBuilder();</div><div class="line">		sb.append(node.data+<span class="string">" "</span>);</div><div class="line">		String data=<span class="string">""</span>;</div><div class="line">		String data1=<span class="string">""</span>;</div><div class="line">		<span class="keyword">if</span>(node.lChild!=<span class="keyword">null</span>)&#123;</div><div class="line">			data=preTraversal(node.lChild);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(node.rChild!=<span class="keyword">null</span>)&#123;</div><div class="line">			data1=preTraversal(node.rChild);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> sb.append(data+<span class="string">" "</span>+data1)+<span class="string">""</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">preTraversal</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> preTraversal(root);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　方法二：（百度上一位网友的，利用的栈操作的，个人觉得挺不错的）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//前序遍历，利用栈进行</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preTraversal2</span><span class="params">(Node root)</span></span>&#123;  </div><div class="line">       <span class="keyword">if</span>(root==<span class="keyword">null</span>)<span class="keyword">return</span>;  </div><div class="line">       Stack&lt;Node&gt; s=<span class="keyword">new</span> Stack&lt;Node&gt;();  </div><div class="line">       <span class="keyword">while</span>(root!=<span class="keyword">null</span>||!s.isEmpty())&#123;  </div><div class="line">           <span class="keyword">while</span>(root!=<span class="keyword">null</span>)&#123;  </div><div class="line">               System.out.print(root.data+<span class="string">" "</span>);  </div><div class="line">               s.push(root);<span class="comment">//先访问再入栈  </span></div><div class="line">               root=root.lChild;  </div><div class="line">           &#125;  </div><div class="line">           root=s.pop();  <span class="comment">//出栈</span></div><div class="line">           root=root.rChild;<span class="comment">//如果是null，出栈并处理右子树  </span></div><div class="line">       &#125;  </div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>　　方法三：（这是数据结构c++版书上是这么写的，这里我把它改为了Java版，个人觉得代码最简洁，也很实用）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preTraversal3</span><span class="params">(Node root)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(root!=<span class="keyword">null</span>)&#123;</div><div class="line">		System.out.print(root.data+<span class="string">" "</span>);</div><div class="line">		preTraversal3(root.lChild);</div><div class="line">		preTraversal3(root.rChild);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a><center><strong>中序遍历</strong></center></h2><p>　　<strong>中序遍历二叉树的操作定义：</strong></p>
+<p>　　<strong>若二叉树为空，则空操作返回；否则</strong></p>
+<ol>
+<li><strong>中序遍历根节点的左子树</strong></li>
+<li><strong>访问根节点</strong></li>
+<li><strong>中序遍历根节点的右子树</strong></li>
+</ol>
+<p>　　这里介绍数据结构的最常用的一种方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//中序遍历</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inOrderTraversal</span><span class="params">(Node root)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(root!=<span class="keyword">null</span>)&#123;</div><div class="line">		inOrderTraversal(root.lChild);</div><div class="line">		System.out.print(root.data+<span class="string">" "</span>);</div><div class="line">		inOrderTraversal(root.rChild);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a><center><strong>后序遍历</strong></center></h2><p>　　<strong>后序遍历二叉树的操作定义：</strong></p>
+<p>　　<strong>若二叉树为空，则空操作返回；否则</strong></p>
+<ol>
+<li><strong>后序遍历根节点的左子树</strong></li>
+<li><strong>后序遍历根节点的右子树</strong></li>
+<li><strong>访问根节点</strong></li>
+</ol>
+<p>　　这里介绍数据结构c++版的一种方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//后序遍历</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postOrderTraversal</span><span class="params">(Node root)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(root!=<span class="keyword">null</span>)&#123;</div><div class="line">		postOrderTraversal(root.lChild);</div><div class="line">		postOrderTraversal(root.rChild);</div><div class="line">		System.out.print(root.data+<span class="string">" "</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="层序遍历"><a href="#层序遍历" class="headerlink" title="层序遍历"></a><center><strong>层序遍历</strong></center></h2><p>　　<strong>二叉树的层序遍历，是指从二叉树第一层开始，从上到下，在同一层中从左到右的顺序对各个节点逐个访问。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//层序遍历，利用队实现</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">levelTraversal</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="comment">//创建队</span></div><div class="line">	Queue q=<span class="keyword">new</span> LinkedList&lt;&gt;();</div><div class="line">	<span class="comment">//添加根节点</span></div><div class="line">	q.add(root);</div><div class="line">	<span class="keyword">while</span>(!q.isEmpty())&#123;</div><div class="line">		<span class="comment">//第一个元素出队</span></div><div class="line">		Node node=(Node) q.poll();</div><div class="line">		System.out.print(node.data+<span class="string">" "</span>);</div><div class="line">		<span class="keyword">if</span>(node.lChild!=<span class="keyword">null</span>)</div><div class="line">             	<span class="comment">//入队</span></div><div class="line">			q.add(node.lChild);</div><div class="line">		<span class="keyword">if</span>(node.rChild!=<span class="keyword">null</span>)</div><div class="line">			<span class="comment">//入队</span></div><div class="line">             	q.add(node.rChild);	</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a><center><strong>总结</strong></center></h1><p>　　以上就是今天分享的内容，二叉树以及其遍历都是树中的重点，二叉树是一种最简单的树结构，特别适合计算机处理，而且任何树都可以简单转换为二叉树，所以今天的内容花了挺多时间的，当然二叉树的内容还没结束，后面还要介绍哈夫曼树，排序二叉树，以及红黑树。不过今天就到此为止啦，明天继续。😀</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/树/" rel="tag"># 树</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/23/数据结构与算法Java版——树的两种表现方式/" rel="next" title="数据结构与算法Java版——树的两种表现方式">
+                <i class="fa fa-chevron-left"></i> 数据结构与算法Java版——树的两种表现方式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="The Kite Runner" />
+          <p class="site-author-name" itemprop="name">The Kite Runner</p>
+           
+              <p class="site-description motion-element" itemprop="description">吾生有涯，而知也无涯</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xichang666" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/fa2da21ee7a7/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net//xichang702" target="_blank" title="csdn">
+                  
+                    <i class="fa fa-fw fa-anchor"></i>
+                  
+                  csdn
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://hanwenblog.cn" target="_blank" title="好友博客">
+                  
+                    <i class="fa fa-fw fa-sign-in"></i>
+                  
+                  好友博客
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#二叉树之二叉链表"><span class="nav-number">1.</span> <span class="nav-text">二叉树之二叉链表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四种遍历"><span class="nav-number">2.</span> <span class="nav-text">四种遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前序遍历"><span class="nav-number">2.1.</span> <span class="nav-text">前序遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中序遍历"><span class="nav-number">2.2.</span> <span class="nav-text">中序遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后序遍历"><span class="nav-number">2.3.</span> <span class="nav-text">后序遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#层序遍历"><span class="nav-number">2.4.</span> <span class="nav-text">层序遍历</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<center>
+<div>
+<span class="with-love"><i class="fa fa-star"></i></span>
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本网站总访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+<span class="with-love"><i class="fa fa-star"></i></span>
+</div>
+</center>
+<center>
+<div class="theme-info">  
+  <span class="post-count">版权为作者所有，转发请注明地址</span>
+</div>
+</center>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4b4b90c549814eafa985e7f92cf0d17a",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+
+  
+</body>
+</html>
