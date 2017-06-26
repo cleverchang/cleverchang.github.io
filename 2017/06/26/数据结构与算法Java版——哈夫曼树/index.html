@@ -1,0 +1,819 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java,数据结构,树," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="哈夫曼树也称最优二叉树，是二叉树中的一种应用，它是权数路径最短的树，在信息检索中比较常用。 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  　　哈夫曼树定义：给定一组具有确定权值的叶子节点，可以构造出不同的二叉树，将其中带权路径长度最小的二叉树称为哈夫曼树。 　　哈夫曼树的实现的基本思想（书上的定义">
+<meta name="keywords" content="java,数据结构,树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法Java版——哈夫曼树">
+<meta property="og:url" content="http://www.xichangblog.com/2017/06/26/数据结构与算法Java版——哈夫曼树/index.html">
+<meta property="og:site_name" content="The Kite Runner">
+<meta property="og:description" content="哈夫曼树也称最优二叉树，是二叉树中的一种应用，它是权数路径最短的树，在信息检索中比较常用。 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  　　哈夫曼树定义：给定一组具有确定权值的叶子节点，可以构造出不同的二叉树，将其中带权路径长度最小的二叉树称为哈夫曼树。 　　哈夫曼树的实现的基本思想（书上的定义">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-26/57028932.jpg">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-26/27525600.jpg">
+<meta property="og:updated_time" content="2017-06-26T09:40:36.681Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构与算法Java版——哈夫曼树">
+<meta name="twitter:description" content="哈夫曼树也称最优二叉树，是二叉树中的一种应用，它是权数路径最短的树，在信息检索中比较常用。 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  　　哈夫曼树定义：给定一组具有确定权值的叶子节点，可以构造出不同的二叉树，将其中带权路径长度最小的二叉树称为哈夫曼树。 　　哈夫曼树的实现的基本思想（书上的定义">
+<meta name="twitter:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-26/57028932.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.xichangblog.com/2017/06/26/数据结构与算法Java版——哈夫曼树/"/>
+
+
+
+
+
+  <title>数据结构与算法Java版——哈夫曼树 | The Kite Runner</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Kite Runner</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">practise makes perfect</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.xichangblog.com/2017/06/26/数据结构与算法Java版——哈夫曼树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="The Kite Runner">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Kite Runner">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构与算法Java版——哈夫曼树</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-26T17:01:38+08:00">
+                2017-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构与算法Java版/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法Java版</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/06/26/数据结构与算法Java版——哈夫曼树/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>　　哈夫曼树也称最优二叉树，是二叉树中的一种应用，它是权数路径最短的树，在信息检索中比较常用。</p>
+<p>　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为<a href="http://blog.csdn.net/xichang702" target="_blank" rel="external">我的博客</a></p>
+</blockquote>
+<p>　　<strong>哈夫曼树定义：给定一组具有确定权值的叶子节点，可以构造出不同的二叉树，将其中带权路径长度最小的二叉树称为哈夫曼树。</strong></p>
+<p>　　哈夫曼树的实现的基本思想（书上的定义太多，这里我自己简化以下）：</p>
+<ol>
+<li><strong>我们自己创建一个节点集合，把每个节点初始化，并且权数要赋值。</strong></li>
+<li><strong>选择节点集合中权值最小的两个节点，将这两个节点分别作为左子树和右子树，生成一颗新的二叉树，这个二叉树根节点权值就是选出的两个节点的权值的和。</strong></li>
+<li><strong>在集合删除（2）中选择出来的两个节点，再把新生成的节点加入集合中。</strong></li>
+<li><strong>重复（2）、（3），直到集合中只有一棵二叉树时，这个二叉树就是哈夫曼树。</strong></li>
+</ol>
+<p><img src="http://or0um8wrx.bkt.clouddn.com/17-6-26/57028932.jpg" alt=""></p>
+<p>　　这里仍然用的二叉链表实现的二叉树，所以先创建Node类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">	T data;	<span class="comment">//数据</span></div><div class="line">	<span class="keyword">double</span> quanShu;	<span class="comment">//权数</span></div><div class="line">	Node lChild;	<span class="comment">//左子树</span></div><div class="line">	Node rChild;	<span class="comment">//右子树</span></div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(T data, <span class="keyword">double</span> quanShu)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>();</div><div class="line">		<span class="keyword">this</span>.data = data;</div><div class="line">		<span class="keyword">this</span>.quanShu = quanShu;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"Node["</span>+data+<span class="string">" "</span>+quanShu+<span class="string">"]"</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　创建哈夫曼树类并实现一系列方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HaFuManTree</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="comment">//创建哈夫曼树</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Node <span class="title">createHaFuManTree</span><span class="params">(List&lt;Node&gt; nodes)</span></span>&#123;</div><div class="line">		<span class="comment">//节点元素大于或者等于2时继续循环</span></div><div class="line">		<span class="keyword">while</span>(nodes.size()&gt;<span class="number">1</span>)</div><div class="line">		&#123;</div><div class="line">			<span class="comment">//升序排序</span></div><div class="line">			sort(nodes);</div><div class="line">			<span class="comment">//获得最小的两位节点</span></div><div class="line">			Node lChild=nodes.get(<span class="number">0</span>);</div><div class="line">			Node rChild=nodes.get(<span class="number">1</span>);</div><div class="line">			<span class="comment">//将最小的两个节点"结合"</span></div><div class="line">			Node parent=<span class="keyword">new</span> Node(<span class="keyword">null</span>, lChild.quanShu+rChild.quanShu);</div><div class="line">			parent.lChild=lChild;</div><div class="line">			parent.rChild=rChild;</div><div class="line">			<span class="comment">//删除已经结合的两个节点</span></div><div class="line">			nodes.remove(<span class="number">0</span>);</div><div class="line">			nodes.remove(<span class="number">0</span>);</div><div class="line">			<span class="comment">//添加生成的节点</span></div><div class="line">			nodes.add(parent);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> nodes.get(<span class="number">0</span>);	<span class="comment">//返回根节点</span></div><div class="line">	&#125;	</div><div class="line">	</div><div class="line">	<span class="comment">//冒泡排序，将nodes按照权数升序排序</span></div><div class="line">	<span class="function"><span class="keyword">public</span> List&lt;Node&gt; <span class="title">sort</span><span class="params">(List&lt;Node&gt; nodes)</span></span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nodes.size();i++)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;nodes.size();j++)</div><div class="line">			&#123;</div><div class="line">				<span class="keyword">if</span>(nodes.get(i).quanShu&gt;nodes.get(j).quanShu)</div><div class="line">				&#123;</div><div class="line">					Node node = nodes.get(i);</div><div class="line">					nodes.set(i,nodes.get(j));</div><div class="line">					nodes.set(j, node);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> nodes;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//层序遍历，利用队实现</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">levelTraversal</span><span class="params">(Node root)</span></span>&#123;</div><div class="line">		<span class="comment">//创建队</span></div><div class="line">		Queue q=<span class="keyword">new</span> LinkedList&lt;&gt;();</div><div class="line">		<span class="comment">//添加根节点</span></div><div class="line">		q.add(root);</div><div class="line">		<span class="keyword">while</span>(!q.isEmpty())&#123;</div><div class="line">			<span class="comment">//第一个元素出队</span></div><div class="line">			Node node=(Node) q.poll();</div><div class="line">			System.out.print(node+<span class="string">" "</span>);</div><div class="line">			<span class="keyword">if</span>(node.lChild!=<span class="keyword">null</span>)</div><div class="line">				q.add(node.lChild);</div><div class="line">			<span class="keyword">if</span>(node.rChild!=<span class="keyword">null</span>)</div><div class="line">				q.add(node.rChild);	</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">		</div><div class="line">	<span class="comment">//获得哈夫曼树带权数路径长度</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getPathNum</span><span class="params">(Node root,<span class="keyword">int</span> height)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">if</span>(root.lChild==<span class="keyword">null</span>&amp;&amp;root.rChild==<span class="keyword">null</span>)&#123;</div><div class="line">				<span class="keyword">return</span> root.quanShu*height;</div><div class="line">			&#125;<span class="keyword">else</span>&#123;</div><div class="line">				<span class="keyword">return</span> getPathNum(root.lChild, height+<span class="number">1</span>)+getPathNum(root.rChild, height+<span class="number">1</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　以上代码就实现了哈夫曼树了，在这个过程中，个人觉得最麻烦的是递归，容易晕，不过<strong>递归最重要的就是两点：</strong></p>
+<ol>
+<li><strong>找重复处理的逻辑</strong></li>
+<li><strong>找结束处理的逻辑</strong></li>
+</ol>
+<p>　　如果递归仍然理不清楚可以用笔画画，盘出逻辑，这样会比较清晰。</p>
+<p>　　最后贴上自己的main方法的代码和截图啦</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		List&lt;Node&gt; nodes=<span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">		nodes.add(<span class="keyword">new</span> Node(<span class="string">"A"</span>, <span class="number">6</span>));</div><div class="line">		nodes.add(<span class="keyword">new</span> Node(<span class="string">"B"</span>, <span class="number">20</span>));</div><div class="line">		nodes.add(<span class="keyword">new</span> Node(<span class="string">"C"</span>, <span class="number">31</span>));</div><div class="line">		nodes.add(<span class="keyword">new</span> Node(<span class="string">"D"</span>, <span class="number">2</span>));</div><div class="line">		nodes.add(<span class="keyword">new</span> Node(<span class="string">"E"</span>, <span class="number">12</span>));</div><div class="line">		nodes.add(<span class="keyword">new</span> Node(<span class="string">"F"</span>, <span class="number">25</span>));</div><div class="line">		nodes.add(<span class="keyword">new</span> Node(<span class="string">"G"</span>, <span class="number">10</span>));</div><div class="line">		HaFuManTree fuManTree=<span class="keyword">new</span> HaFuManTree();</div><div class="line">		Node root = fuManTree.createHaFuManTree(nodes);</div><div class="line">		fuManTree.levelTraversal(root);</div><div class="line">		System.out.println();</div><div class="line">		System.out.println(<span class="string">"哈夫曼路径长度为："</span>+fuManTree.getPathNum(root, <span class="number">0</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://or0um8wrx.bkt.clouddn.com/17-6-26/27525600.jpg" alt=""></p>
+<p>　　今天的内容就到此结束啦，有兴趣的小伙伴可以自己手动实现下。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/树/" rel="tag"># 树</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/25/数据结构与算法Java版——二叉树及其遍历/" rel="next" title="数据结构与算法Java版——二叉树及其遍历">
+                <i class="fa fa-chevron-left"></i> 数据结构与算法Java版——二叉树及其遍历
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="The Kite Runner" />
+          <p class="site-author-name" itemprop="name">The Kite Runner</p>
+           
+              <p class="site-description motion-element" itemprop="description">吾生有涯，而知也无涯</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xichang666" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/fa2da21ee7a7/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net//xichang702" target="_blank" title="csdn">
+                  
+                    <i class="fa fa-fw fa-anchor"></i>
+                  
+                  csdn
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://hanwenblog.cn" target="_blank" title="好友博客">
+                  
+                    <i class="fa fa-fw fa-sign-in"></i>
+                  
+                  好友博客
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<center>
+<div>
+<span class="with-love"><i class="fa fa-star"></i></span>
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本网站总访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+<span class="with-love"><i class="fa fa-star"></i></span>
+</div>
+</center>
+<center>
+<div class="theme-info">  
+  <span class="post-count">版权为作者所有，转发请注明地址</span>
+</div>
+</center>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4b4b90c549814eafa985e7f92cf0d17a",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+
+  
+</body>
+</html>
