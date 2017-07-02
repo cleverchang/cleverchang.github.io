@@ -90,13 +90,13 @@
 
 
 
-<meta name="description" content="上次说到的哈夫曼树，相比大家都已经了解了如何构建哈夫曼树，今天分享的内容是排序二叉树（也有叫二叉排序树的，我这里就叫排序二叉树了）的增删查及其实现。 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树以及常见的排序方法。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  　　排序二叉树是一种特殊的二叉树，通过这种结构可以很方便的对树中所有节点进行排序和检">
+<meta name="description" content="上次说到的哈夫曼树，想必大家都已经了解了如何构建哈夫曼树，今天分享的内容是排序二叉树（也有叫二叉排序树的，我这里就叫排序二叉树了）的增删查及其实现。 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树以及常见的排序方法。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  　　排序二叉树是一种特殊的二叉树，通过这种结构可以很方便的对树中所有节点进行排序和检">
 <meta name="keywords" content="java,数据结构,树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法Java版——排序二叉树">
 <meta property="og:url" content="http://www.xichangblog.com/2017/07/01/数据结构与算法Java版——排序二叉树/index.html">
 <meta property="og:site_name" content="The Kite Runner">
-<meta property="og:description" content="上次说到的哈夫曼树，相比大家都已经了解了如何构建哈夫曼树，今天分享的内容是排序二叉树（也有叫二叉排序树的，我这里就叫排序二叉树了）的增删查及其实现。 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树以及常见的排序方法。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  　　排序二叉树是一种特殊的二叉树，通过这种结构可以很方便的对树中所有节点进行排序和检">
+<meta property="og:description" content="上次说到的哈夫曼树，想必大家都已经了解了如何构建哈夫曼树，今天分享的内容是排序二叉树（也有叫二叉排序树的，我这里就叫排序二叉树了）的增删查及其实现。 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树以及常见的排序方法。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  　　排序二叉树是一种特殊的二叉树，通过这种结构可以很方便的对树中所有节点进行排序和检">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-2/83612179.jpg">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-2/34451862.jpg">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-2/58310245.jpg">
@@ -105,10 +105,10 @@
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-2/38558613.jpg">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-2/66035041.jpg">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-2/73899957.jpg">
-<meta property="og:updated_time" content="2017-07-02T02:01:00.890Z">
+<meta property="og:updated_time" content="2017-07-02T02:31:17.485Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法Java版——排序二叉树">
-<meta name="twitter:description" content="上次说到的哈夫曼树，相比大家都已经了解了如何构建哈夫曼树，今天分享的内容是排序二叉树（也有叫二叉排序树的，我这里就叫排序二叉树了）的增删查及其实现。 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树以及常见的排序方法。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  　　排序二叉树是一种特殊的二叉树，通过这种结构可以很方便的对树中所有节点进行排序和检">
+<meta name="twitter:description" content="上次说到的哈夫曼树，想必大家都已经了解了如何构建哈夫曼树，今天分享的内容是排序二叉树（也有叫二叉排序树的，我这里就叫排序二叉树了）的增删查及其实现。 　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树以及常见的排序方法。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为我的博客  　　排序二叉树是一种特殊的二叉树，通过这种结构可以很方便的对树中所有节点进行排序和检">
 <meta name="twitter:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-2/83612179.jpg">
 
 
@@ -379,7 +379,7 @@
 
       
         <blockquote>
-<p>　　上次说到的哈夫曼树，相比大家都已经了解了如何构建哈夫曼树，今天分享的内容是排序二叉树（也有叫二叉排序树的，我这里就叫排序二叉树了）的增删查及其实现。</p>
+<p>　　上次说到的哈夫曼树，想必大家都已经了解了如何构建哈夫曼树，今天分享的内容是排序二叉树（也有叫二叉排序树的，我这里就叫排序二叉树了）的增删查及其实现。</p>
 <p>　　这个学期学了数据结构这本书，所以我打算用Java实现其中表，队，栈，树以及常见的排序方法。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为<a href="http://blog.csdn.net/xichang702" target="_blank" rel="external">我的博客</a></p>
 </blockquote>
 <p>　　排序二叉树是一种特殊的二叉树，通过这种结构可以很方便的对树中所有节点进行排序和检索。排序二叉树具有以下性质，也是实现排序二叉树所要注意的地方：</p>
