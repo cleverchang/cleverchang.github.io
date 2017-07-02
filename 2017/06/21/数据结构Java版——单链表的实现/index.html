@@ -90,19 +90,19 @@
 
 
 
-<meta name="description" content="上次分享的是线性表的实现，不知道各位小伙伴有没有自己动手实现，不过进度不能停。今天记录单链表的实现。虽然Java并没有c++中的指针（真的没有吗？我觉得应该算有的，至少是有伪指针），但是依然可以实现链表，我们可以在Java中用引用变量指向我们的节点，让引用变量代替指针的作用。 　　这个学期学习的数据结构，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CS">
+<meta name="description" content="上次分享的是线性表的实现，不知道各位小伙伴有没有自己动手实现，不过进度不能停。今天记录单链表的实现。虽然Java并没有c++中的指针（真的没有吗？我觉得应该算有的，至少是有伪指针），但是依然可以实现链表，我们可以在Java中用引用变量指向我们的节点，让引用变量代替指针的作用。 　　这个学期学习的数据结构，所以我打算用Java实现其中表，队，栈，树以及常见的排序方法。如果你有兴趣可以持续关注我">
 <meta name="keywords" content="java,数据结构,表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法Java版——单链表的实现">
 <meta property="og:url" content="http://www.xichangblog.com/2017/06/21/数据结构Java版——单链表的实现/index.html">
 <meta property="og:site_name" content="The Kite Runner">
-<meta property="og:description" content="上次分享的是线性表的实现，不知道各位小伙伴有没有自己动手实现，不过进度不能停。今天记录单链表的实现。虽然Java并没有c++中的指针（真的没有吗？我觉得应该算有的，至少是有伪指针），但是依然可以实现链表，我们可以在Java中用引用变量指向我们的节点，让引用变量代替指针的作用。 　　这个学期学习的数据结构，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CS">
+<meta property="og:description" content="上次分享的是线性表的实现，不知道各位小伙伴有没有自己动手实现，不过进度不能停。今天记录单链表的实现。虽然Java并没有c++中的指针（真的没有吗？我觉得应该算有的，至少是有伪指针），但是依然可以实现链表，我们可以在Java中用引用变量指向我们的节点，让引用变量代替指针的作用。 　　这个学期学习的数据结构，所以我打算用Java实现其中表，队，栈，树以及常见的排序方法。如果你有兴趣可以持续关注我">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-21/53096650.jpg">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-21/28977179.jpg">
-<meta property="og:updated_time" content="2017-06-23T09:21:01.472Z">
+<meta property="og:updated_time" content="2017-07-01T14:10:45.565Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法Java版——单链表的实现">
-<meta name="twitter:description" content="上次分享的是线性表的实现，不知道各位小伙伴有没有自己动手实现，不过进度不能停。今天记录单链表的实现。虽然Java并没有c++中的指针（真的没有吗？我觉得应该算有的，至少是有伪指针），但是依然可以实现链表，我们可以在Java中用引用变量指向我们的节点，让引用变量代替指针的作用。 　　这个学期学习的数据结构，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CS">
+<meta name="twitter:description" content="上次分享的是线性表的实现，不知道各位小伙伴有没有自己动手实现，不过进度不能停。今天记录单链表的实现。虽然Java并没有c++中的指针（真的没有吗？我觉得应该算有的，至少是有伪指针），但是依然可以实现链表，我们可以在Java中用引用变量指向我们的节点，让引用变量代替指针的作用。 　　这个学期学习的数据结构，所以我打算用Java实现其中表，队，栈，树以及常见的排序方法。如果你有兴趣可以持续关注我">
 <meta name="twitter:image" content="http://or0um8wrx.bkt.clouddn.com/17-6-21/53096650.jpg">
 
 
@@ -374,7 +374,7 @@
       
         <blockquote>
 <p>　　上次分享的是线性表的实现，不知道各位小伙伴有没有自己动手实现，不过进度不能停。今天记录单链表的实现。虽然Java并没有c++中的指针（真的没有吗？我觉得应该算有的，至少是有伪指针），但是依然可以实现链表，我们可以在Java中用引用变量指向我们的节点，让引用变量代替指针的作用。</p>
-<p>　　这个学期学习的数据结构，所以我打算用Java实现其中表，队，栈，树。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为<a href="http://blog.csdn.net/xichang702" target="_blank" rel="external">我的博客</a></p>
+<p>　　这个学期学习的数据结构，所以我打算用Java实现其中表，队，栈，树以及常见的排序方法。如果你有兴趣可以持续关注我后续操作。我的CSDN地址为<a href="http://blog.csdn.net/xichang702" target="_blank" rel="external">我的博客</a></p>
 </blockquote>
 <p><img src="http://or0um8wrx.bkt.clouddn.com/17-6-21/53096650.jpg" alt=""></p>
 <p>　　接下来我们就一步步实现吧。</p>
@@ -548,7 +548,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
