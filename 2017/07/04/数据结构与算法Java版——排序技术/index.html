@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-7/27154599.jpg">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-7/1142977.jpg">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-10/40617204.jpg">
-<meta property="og:updated_time" content="2017-07-10T10:42:00.586Z">
+<meta property="og:updated_time" content="2017-07-10T10:46:20.890Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法Java版——九大基本排序算法">
 <meta name="twitter:description" content="这次分享的主题是排序算法，排序是数据处理中经常用到的一种操作，主要目的就是为了查找，在数据大量时，不同的算法有不同的效果。 　　排序板块是目前我的写的数据结构与算法Java版的最后一块内容，所以日后会开始学习其他的内容，有兴趣的伙伴可以继续关注我，我的CSDN地址为我的博客  　　首先，介绍两个基本的概念：  排序：是将一个记录的任意序列重新排列成一个按关键码有序的序列。 排序算法的稳定性：">
@@ -588,17 +588,82 @@
 <p>　　从上面代码可以看出，归并排序需要先分解，再合并。 归并排序算法复杂度为O(nlog2 n)。归并排序算法空间效率较差，因为它需要一个与原数组相同大小的数组，但归并排序是稳定的。</p>
 <h2 id="桶式排序"><a href="#桶式排序" class="headerlink" title="桶式排序"></a><center>桶式排序</center></h2><p>　　桶式排序是一种很神奇排序方式，下面以{3，6，1，5，7，6}为例进行分析（看完你就知道神奇在哪了）</p>
 <p>　　这个数组处于1~7这个范围内，范围很小，用桶式排序正好，具体步骤如下：</p>
+<p><strong>1、对于这个范围构建一个buckets数组，用于记录落入每个桶中的元素的个数，如下所示：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数组范围</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+<th style="text-align:center">7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">buckets数组</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">数组下标</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2、对于上图的buckets数组中的元素按公式<em>buckets[i]=buckets[i]+buckets[i-1]</em>（其中i&lt;=i&lt;buckets.length）重新计算。得到如下所示数组（由下表可知，排序6时，在下表中找到数组范围一行找到6的位置，其新buckets中对应5，即应该排第五位，同理：7对应的新6buckets中的6，所以7应该在第6位……）</strong> 。 </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数组范围</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+<th style="text-align:center">7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">新buckets数组</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">数组下标</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><p><strong>对于这个范围构建一个buckets数组，用于记录落入每个桶中的元素的个数，如下所示：</strong></p>
-<p>​</p>
-<p>|   数组范围    |  1   |  2   |  3   |  4   |  5   |  6   |  7   |<br>| :——-: | :–: | :–: | :–: | :–: | :–: | :–: | :–: |<br>| buckets数组 |  1   |  0   |  1   |  0   |  1   |  2   |  1   |<br>|   数组下标    |  0   |  1   |  2   |  3   |  4   |  5   |  6   |</p>
-</li>
-<li><p><strong>对于上图的buckets数组中的元素按公式<em>buckets[i]=buckets[i]+buckets[i-1]</em>（其中i&lt;=i&lt;buckets.length）重新计算。得到如下所示数组（由下表可知，排序6时，在下表中找到数组范围一行找到6的位置，其新buckets中对应5，即应该排第五位，同理：7对应的新6buckets中的6，所以7应该在第6位……）</strong> 。 </p>
-<p>​</p>
-<p>|    数组范围    |  1   |  2   |  3   |  4   |  5   |  6   |  7   |<br>| :——–: | :–: | :–: | :–: | :–: | :–: | :–: | :–: |<br>| 新buckets数组 |  1   |  1   |  2   |  2   |  3   |  5   |  6   |<br>|    数组下标    |  0   |  1   |  2   |  3   |  4   |  5   |  6   |</p>
-</li>
-<li><p><strong>最后根据得到的新的buckets数组的信息将原数组排序好。</strong></p>
-</li>
+<li><strong>最后根据得到的新的buckets数组的信息将原数组排序好。</strong></li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 桶式排序</div><div class="line"> * <span class="doctag">@param</span> a待排序数组</div><div class="line"> * <span class="doctag">@param</span> min数组中最小的数</div><div class="line"> * <span class="doctag">@param</span> max数组中最大的数</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bucketSort</span><span class="params">(<span class="keyword">int</span> [] a,<span class="keyword">int</span> min,<span class="keyword">int</span> max)</span></span>&#123;</div><div class="line">	<span class="comment">//buckets数组相当于定义了max-min+1个桶，即数组的容量就是桶几个</span></div><div class="line">	<span class="keyword">int</span> [] buckets=<span class="keyword">new</span> <span class="keyword">int</span>[max-min+<span class="number">1</span>];</div><div class="line">	<span class="comment">//记录每个数出现的次数</span></div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</div><div class="line">		<span class="comment">//在指定的位置记录元素出现的个数</span></div><div class="line">		buckets[a[i]-min]++;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//将buckets换成新的buckets</span></div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;max-min+<span class="number">1</span>;i++)&#123;</div><div class="line">		buckets[i]=buckets[i]+buckets[i-<span class="number">1</span>];</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//定义一个临时数组将a数组缓存下来</span></div><div class="line">	<span class="keyword">int</span>[] tmp=<span class="keyword">new</span> <span class="keyword">int</span>[a.length];</div><div class="line">	System.arraycopy(a, <span class="number">0</span>, tmp, <span class="number">0</span>, a.length);</div><div class="line">	<span class="comment">//根据新的buckets的信息将数据按放回相应位置，即排序 </span></div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k=a.length-<span class="number">1</span>;k&gt;=<span class="number">0</span>;k--)&#123;</div><div class="line">         	<span class="comment">/* </span></div><div class="line">         	tmp[k]-min得到的是tmp[k]在buckets数组中的下标</div><div class="line">         	--buckets[tmp[k]-min]中的--是因为要将得到的</div><div class="line">         	buckets[tmp[k]-min]，即某数排在第几位转化为数组下标</div><div class="line">         	所以减一即可。</div><div class="line">         	*/</div><div class="line">		a[--buckets[tmp[k]-min]]=tmp[k];</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>　　桶式排序是一种非常优秀的算法，时间效率高。但是其空间开销大，它需要buckets数组记录落入各桶中元素的个数，第二个临时数组缓存待排序数据。 </p>
