@@ -100,8 +100,9 @@
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-21/31598950.jpg">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-22/76085074.jpg">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-22/30803288.jpg">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-22/5435184.jpg">
 <meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-22/49347925.jpg">
-<meta property="og:updated_time" content="2017-07-22T02:45:51.024Z">
+<meta property="og:updated_time" content="2017-07-22T12:36:33.358Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="确保WEB安全的HTTPS">
 <meta name="twitter:description" content="今天分享的内容是HTTPS安全传输的原理。大家都知道HTTP有很多缺点，比如：  通信使用明文，内容可能会被盗窃。 不验证通信方身份，因此有可能遭遇伪装。 无法验证报文的完整性，所以有可能已经遭到篡改。  如果使用HTTP，就感觉人在大街上裸奔一样，会被任何人看到，任何想拦截的人都可以将其拦截下来。所以为了解决这些问题，HTTPS就应运而生了。 披着SSL外套的HTTP　　HTTPS并不是取代">
@@ -392,6 +393,8 @@
 <h2 id="证明公开密钥正确性的证书"><a href="#证明公开密钥正确性的证书" class="headerlink" title="证明公开密钥正确性的证书"></a><center>证明公开密钥正确性的证书</center></h2><p>　　看起来利用非对称加密似乎使通信变得十分的安全，然而不然，公钥在传输中可能被替换，我们也无法验证公钥是否是货真价实的公钥。例：A，B同学互相通信，隔壁老C同学觉得不爽他们两个大老爷们天天在网上叽叽歪歪，但是自己无法破解他们传输的内容，于是C同学监听了他们的通信，将A，B相互通信使用的公钥替换掉，让A,B以为自己还处于安全之中。</p>
 <p>　　于是为了解决这个问题， 数字认证机构以及其相关的颁布的公开密钥证书就出现了。首先我们介绍下数字认证机构业务流程：服务器运营人员向证书认证机构提出公开密钥的申请。数字证书认证机构在判明提出申请者的身份后，对已申请的公开密钥做数字签名，然后分配这个已签名的公开密钥，并将该公开密钥放入公钥证书后绑定在一起。</p>
 <p>　　服务器会将这份由数字签名证书认证的的证书发给客户端。客户端收到后使用认证机构的公开密钥（这个公开密钥必须安全转移到客户端，通信时安全转交很难，所以一般多数浏览器会事前植入常用的认证机关公开密钥）进行验证证书上的数字签名，一旦通过客户端就知道这个密钥可以用，没有被篡改。</p>
+<h2 id="中间人攻击"><a href="#中间人攻击" class="headerlink" title="中间人攻击"></a><center>中间人攻击</center></h2><p>　　中间人攻击（Man-in-the-MiddleAttack，简称“MITM攻击”）是一种“间接”的入侵攻击，这种攻击模式是通过各种技术手段将受入侵者控制的一台计算机虚拟放置在网络连接中的两台通信计算机之间，这台计算机就称为“中间人”。也就是我之前说到的那个不爽的C同学，C同学利用自己电脑将其置于A，B同学通信之间，就可以发生中间人攻击。所以日常通信时很有可能有人“拦在了路中间”而且我们很可能不知道。这个中间人可能篡改数据，盗取数据等等。如下图所示：</p>
+<p><img src="http://or0um8wrx.bkt.clouddn.com/17-7-22/5435184.jpg" alt=""></p>
 <h2 id="为啥不一直用HTTPS"><a href="#为啥不一直用HTTPS" class="headerlink" title="为啥不一直用HTTPS?"></a><center>为啥不一直用HTTPS?</center></h2><p>　　虽然HTTPS优点很多，也更安全，但是缺点也很明显：</p>
 <ul>
 <li>慢，HTTPS需要做服务器，客户端的加密解密处理，所以小号CPU和内存等硬件资源。而且SSL通信部分消耗网络资源，并且其对通信进行处理，所以时间大大加长。</li>
@@ -641,7 +644,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#披着SSL外套的HTTP"><span class="nav-number">1.</span> <span class="nav-text">披着SSL外套的HTTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共享密钥加密-对称加密"><span class="nav-number">2.</span> <span class="nav-text">共享密钥加密(对称加密)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用两把密钥的加密-RSA：非对称加密"><span class="nav-number">3.</span> <span class="nav-text">使用两把密钥的加密(RSA：非对称加密)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS使用混合加密机制"><span class="nav-number">4.</span> <span class="nav-text">HTTPS使用混合加密机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证明公开密钥正确性的证书"><span class="nav-number">5.</span> <span class="nav-text">证明公开密钥正确性的证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为啥不一直用HTTPS"><span class="nav-number">6.</span> <span class="nav-text">为啥不一直用HTTPS?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#披着SSL外套的HTTP"><span class="nav-number">1.</span> <span class="nav-text">披着SSL外套的HTTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共享密钥加密-对称加密"><span class="nav-number">2.</span> <span class="nav-text">共享密钥加密(对称加密)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用两把密钥的加密-RSA：非对称加密"><span class="nav-number">3.</span> <span class="nav-text">使用两把密钥的加密(RSA：非对称加密)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS使用混合加密机制"><span class="nav-number">4.</span> <span class="nav-text">HTTPS使用混合加密机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证明公开密钥正确性的证书"><span class="nav-number">5.</span> <span class="nav-text">证明公开密钥正确性的证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中间人攻击"><span class="nav-number">6.</span> <span class="nav-text">中间人攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为啥不一直用HTTPS"><span class="nav-number">7.</span> <span class="nav-text">为啥不一直用HTTPS?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
