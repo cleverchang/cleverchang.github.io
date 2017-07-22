@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://www.xichangblog.com/2017/07/19/%E7%A1%AE%E4%BF%9DWEB%E5%AE%89%E5%85%A8%E7%9A%84HTTPS/</loc>
+    <lastmod>2017-07-22T02:35:23.972Z</lastmod>
+    <data>
+        <display>
+        <title>确保WEB安全的HTTPS</title>
+        <pubTime>2017-07-19T02:38:06.000Z</pubTime>
+        
+        <tag>HTTPS</tag>
+         
+         
+           
+             
+              <breadCrumb title="计算机网络" url="http://www.xichangblog.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.xichangblog.com/2017/07/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Java%E7%89%88%E2%80%94%E2%80%94%E6%8E%92%E5%BA%8F%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2017-07-10T10:48:00.508Z</lastmod>
+    <lastmod>2017-07-10T12:01:16.144Z</lastmod>
     <data>
         <display>
         <title>数据结构与算法Java版——九大基本排序算法</title>
@@ -322,26 +342,6 @@
            
              
               <breadCrumb title="Hibernate" url="http://www.xichangblog.com/categories/Hibernate/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.xichangblog.com/2017/05/25/css%E5%9F%BA%E7%A1%80%E5%B0%8F%E6%8A%80%E5%B7%A7%E2%80%94%E2%80%94%E6%BB%91%E5%8A%A8%E6%A1%86%E4%B8%8E%E5%9B%BA%E5%AE%9A%E4%BD%8D%E7%BD%AE/</loc>
-    <lastmod>2017-05-26T07:12:05.223Z</lastmod>
-    <data>
-        <display>
-        <title>css基础小技巧——滑动框与固定位置</title>
-        <pubTime>2017-05-25T12:46:01.000Z</pubTime>
-        
-        <tag>css基础小技巧</tag>
-         
-         
-           
-             
-              <breadCrumb title="CSS" url="http://www.xichangblog.com/categories/CSS/"/>
           
         </display>
     </data>
