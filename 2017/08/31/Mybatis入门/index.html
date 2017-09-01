@@ -1,0 +1,860 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="mybatis," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="第一次利用官方文档学习知识，曾经觉得看官网挺难的，今天耐心的看了下去，发现还是挺不错的，这里详细的分享，带小白Mybatis入门。Mybatis官方教程后面不懂的地方可以查看，官网有中文版。 学什么都最好有实例，所以我们用一个实例来带学习。 首先，我们设计下数据库，如图：  这里解释提示下为什么数据类型是这样：    数据类型 占用存储空间 定义格式     Char(n) 定长，最大8KB 存A">
+<meta name="keywords" content="mybatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis入门">
+<meta property="og:url" content="http://www.xichangblog.com/2017/08/31/Mybatis入门/index.html">
+<meta property="og:site_name" content="CleverChang">
+<meta property="og:description" content="第一次利用官方文档学习知识，曾经觉得看官网挺难的，今天耐心的看了下去，发现还是挺不错的，这里详细的分享，带小白Mybatis入门。Mybatis官方教程后面不懂的地方可以查看，官网有中文版。 学什么都最好有实例，所以我们用一个实例来带学习。 首先，我们设计下数据库，如图：  这里解释提示下为什么数据类型是这样：    数据类型 占用存储空间 定义格式     Char(n) 定长，最大8KB 存A">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-9-1/74406571.jpg">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-9-1/50947945.jpg">
+<meta property="og:updated_time" content="2017-09-01T05:24:27.015Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mybatis入门">
+<meta name="twitter:description" content="第一次利用官方文档学习知识，曾经觉得看官网挺难的，今天耐心的看了下去，发现还是挺不错的，这里详细的分享，带小白Mybatis入门。Mybatis官方教程后面不懂的地方可以查看，官网有中文版。 学什么都最好有实例，所以我们用一个实例来带学习。 首先，我们设计下数据库，如图：  这里解释提示下为什么数据类型是这样：    数据类型 占用存储空间 定义格式     Char(n) 定长，最大8KB 存A">
+<meta name="twitter:image" content="http://or0um8wrx.bkt.clouddn.com/17-9-1/74406571.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.xichangblog.com/2017/08/31/Mybatis入门/"/>
+
+
+
+
+
+  <title>Mybatis入门 | CleverChang</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CleverChang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">practise makes perfect</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.xichangblog.com/2017/08/31/Mybatis入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="The Kite Runner">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CleverChang">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mybatis入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T21:37:29+08:00">
+                2017-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/08/31/Mybatis入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>第一次利用官方文档学习知识，曾经觉得看官网挺难的，今天耐心的看了下去，发现还是挺不错的，这里详细的分享，带小白Mybatis入门。<a href="http://www.mybatis.org/mybatis-3" target="_blank" rel="external">Mybatis官方教程</a>后面不懂的地方可以查看，官网有中文版。</p>
+<p>学什么都最好有实例，所以我们用一个实例来带学习。</p>
+<p>首先，我们设计下数据库，如图：</p>
+<p><img src="http://or0um8wrx.bkt.clouddn.com/17-9-1/74406571.jpg" alt=""></p>
+<p>这里解释提示下为什么数据类型是这样：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数据类型</th>
+<th style="text-align:center">占用存储空间</th>
+<th style="text-align:center">定义格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Char(n)</td>
+<td style="text-align:center">定长，最大8KB</td>
+<td style="text-align:center">存ANSI字符，n为串长度</td>
+</tr>
+<tr>
+<td style="text-align:center">Varchar(n)</td>
+<td style="text-align:center">变长，最大8KB</td>
+<td style="text-align:center">存ANSI字符，n为串长度</td>
+</tr>
+<tr>
+<td style="text-align:center">Nchar(n)</td>
+<td style="text-align:center">定长，最大8KB</td>
+<td style="text-align:center">存Unicode字符，n为串长度</td>
+</tr>
+<tr>
+<td style="text-align:center">Nvarchar(n)</td>
+<td style="text-align:center">变长，最大8KB</td>
+<td style="text-align:center">存Unicode字符，n为串长度</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">ANSI</th>
+<th style="text-align:center">Unicode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">英文字符</td>
+<td style="text-align:center">1字节</td>
+<td style="text-align:center">2字节</td>
+</tr>
+<tr>
+<td style="text-align:center">汉字</td>
+<td style="text-align:center">2字节</td>
+<td style="text-align:center">2字节</td>
+</tr>
+</tbody>
+</table>
+<p>如上表所示，例：</p>
+<p>Char(5):即长度为5，如果长为5，比如’21545’，即可以存储，如果你存的是’211’，长度为3，而Char是定长，所以211后面会补2个空格。让其强行成为长为5的串，所以Char适合定长。并且Char存的ANSI字符，所以如上表，一个英文占一个字节，而一个中文占两个字节，’西昌6’和’21545’占相同字节，Char适合全英文。</p>
+<p>Varchar(5):即长度为5，如果存的数据占5个字节，比如’21545’，即可以存储，如果你存的是’211’，只有3个字节，而Varchar是变长，依然存储’211’，不补充空格。</p>
+<p>NChar(5):即长度为5，’西昌666’和’仙剑奇侠传’就占相同字节，所以NChar适合中/英混合。</p>
+<p>接下来我们创建项目，如图所示：</p>
+<p><img src="http://or0um8wrx.bkt.clouddn.com/17-9-1/50947945.jpg" alt=""></p>
+<p>创建实体类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> ID;</div><div class="line">	<span class="keyword">private</span> String Name;</div><div class="line">	<span class="keyword">private</span> String Phone;</div><div class="line">	<span class="keyword">private</span> String Age;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getID</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> ID;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setID</span><span class="params">(<span class="keyword">int</span> iD)</span> </span>&#123;</div><div class="line">		ID = iD;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> Name;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		Name = name;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getPhone</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> Phone;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPhone</span><span class="params">(String phone)</span> </span>&#123;</div><div class="line">		Phone = phone;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> Age;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(String age)</span> </span>&#123;</div><div class="line">		Age = age;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, String phone, String age)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>();</div><div class="line">		Name = name;</div><div class="line">		Phone = phone;</div><div class="line">		Age = age;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>导入Mybatis和jdbc的包，创建Configuration.xml文件,可以在你下载的Mybatis压缩包中找到这个xml文件，复制过来，这里用的SQL Server2008,自己可以配置数据库的名字，密码，驱动等，如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</div><div class="line"><span class="meta">&lt;!DOCTYPE configuration</span></div><div class="line">    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</div><div class="line">    "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">settings</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"useGeneratedKeys"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"useColumnLabel"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">settings</span>&gt;</span></div><div class="line">	</div><div class="line">  <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">value</span>=<span class="string">""</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"UNPOOLED"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.microsoft.sqlserver.jdbc.SQLServerDriver"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:sqlserver://localhost:1433;DatabaseName=MybatisTest"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"sa"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"123456"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!--</span></div><div class="line">  mapper是必须的,读取另一个xml,后面的Student.xml文件</div><div class="line">  --&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"sqlxml/Student.xml"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>再创建Student.xml，配置如下（也可以找到）:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="meta">&lt;!DOCTYPE mapper</span></div><div class="line">    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</div><div class="line">    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"Student"</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="comment">&lt;!--type哪一个类  --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"com.entity.Student"</span> <span class="attr">id</span>=<span class="string">"StudentResult"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"ID"</span> <span class="attr">jdbcType</span>=<span class="string">"INTEGER"</span> <span class="attr">property</span>=<span class="string">"ID"</span>/&gt;</span> <span class="comment">&lt;!-- id为主键标签  result为普通标签--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"Name"</span> <span class="attr">jdbcType</span>=<span class="string">"NVARCHAR"</span> <span class="attr">property</span>=<span class="string">"Name"</span>/&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"Phone"</span> <span class="attr">jdbcType</span>=<span class="string">"NCHAR"</span> <span class="attr">property</span>=<span class="string">"Phone"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"Age"</span> <span class="attr">jdbcType</span>=<span class="string">"NCHAR"</span> <span class="attr">property</span>=<span class="string">"Age"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></div><div class="line">	</div><div class="line">	<span class="comment">&lt;!-- 找到对应关系resultmap会进行赋值 --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"queryStudentList"</span> <span class="attr">parameterType</span>=<span class="string">"com.entity.Student"</span> <span class="attr">resultMap</span>=<span class="string">"StudentResult"</span>&gt;</span></div><div class="line">    select * from Student where Name=#&#123;name&#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line">  </div><div class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>以上配置完成之后就可以开始测试了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DBTest</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		List&lt;Student&gt; list = <span class="keyword">new</span> ArrayList&lt;Student&gt;();</div><div class="line">		SqlSession session = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">          	<span class="comment">//此处为官网推荐做法</span></div><div class="line">			InputStream inputStream = Resources.getResourceAsStream(<span class="string">"configure/Configuration.xml"</span>);</div><div class="line">			SqlSessionFactory sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(inputStream);</div><div class="line">			session = sqlSessionFactory.openSession();</div><div class="line">			</div><div class="line">          	<span class="comment">//这里是参数查询的设置，查询名字为吕布的学生</span></div><div class="line">			Student student = <span class="keyword">new</span> Student();</div><div class="line">			student.setName(<span class="string">"吕布"</span>);</div><div class="line">			list = session.selectList(<span class="string">"Student.queryStudentList"</span>, student);</div><div class="line">			</div><div class="line">			list.forEach((stu) -&gt;  System.out.println(stu.getName()+<span class="string">" "</span>+stu.getAge()+<span class="string">" "</span>+stu.getPhone()));</div><div class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; <span class="keyword">finally</span> &#123;</div><div class="line">			<span class="comment">//每次用完都要关闭</span></div><div class="line">          	<span class="keyword">if</span>(session!=<span class="keyword">null</span>)&#123;</div><div class="line">				session=<span class="keyword">null</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上就完成了查询操作了，是不是很简单，update以及删除和这类似，可以去官网查看，就不多说啦。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mybatis/" rel="tag"># mybatis</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/12/再看水浒招安/" rel="next" title="再看水浒招安">
+                <i class="fa fa-chevron-left"></i> 再看水浒招安
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="The Kite Runner" />
+          <p class="site-author-name" itemprop="name">The Kite Runner</p>
+           
+              <p class="site-description motion-element" itemprop="description">吾生有涯，而知无涯也</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/cleverchang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/fa2da21ee7a7/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net//xichang702" target="_blank" title="csdn">
+                  
+                    <i class="fa fa-fw fa-anchor"></i>
+                  
+                  csdn
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://hanwenblog.cn" target="_blank" title="好友博客">
+                  
+                    <i class="fa fa-fw fa-sign-in"></i>
+                  
+                  好友博客
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<center>
+<div>
+<span class="with-love"><i class="fa fa-star"></i></span>
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本网站总访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+<span class="with-love"><i class="fa fa-star"></i></span>
+</div>
+</center>
+<center>
+<div class="theme-info">  
+  <span class="post-count">版权为作者所有，转发请注明地址</span>
+</div>
+</center>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4b4b90c549814eafa985e7f92cf0d17a",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+
+  
+</body>
+</html>
