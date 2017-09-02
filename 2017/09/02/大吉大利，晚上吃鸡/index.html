@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="HTTPS," />
+  <meta name="keywords" content="随笔,生活," />
 
 
 
@@ -90,23 +90,21 @@
 
 
 
-<meta name="description" content="今天分享的内容是HTTPS安全传输的原理。大家都知道HTTP有很多缺点，比如：  通信使用明文，内容可能会被盗窃。 不验证通信方身份，因此有可能遭遇伪装。 无法验证报文的完整性，所以有可能已经遭到篡改。  如果使用HTTP，就感觉人在大街上裸奔一样，会被任何人看到，任何想拦截的人都可以将其拦截下来。所以为了解决这些问题，HTTPS就应运而生了。 披着SSL外套的HTTP　　HTTPS并不是取代">
-<meta name="keywords" content="HTTPS">
+<meta name="description" content="不知道你有没有突然发现身边总有人喊着：“今晚吃鸡，吃鸡balabala的”。甚至都有了以下表情包：   吃鸡到底是个什么梗？大家不用想歪，这个鸡并不是那个鸡，吃鸡 slogan 来源于全球火爆的一款游戏——绝地求生，这是一款求生 + 射击 + 团队 + balabala 的游戏，而“大吉大利，晚上吃鸡”正是拿了第一名后屏幕显示的，英文原文：“Winner Winner ，Chicken dinne">
+<meta name="keywords" content="随笔,生活">
 <meta property="og:type" content="article">
-<meta property="og:title" content="确保WEB安全的HTTPS">
-<meta property="og:url" content="http://www.xichangblog.com/2017/07/19/确保WEB安全的HTTPS/index.html">
+<meta property="og:title" content="大吉大利，晚上吃鸡">
+<meta property="og:url" content="http://www.xichangblog.com/2017/09/02/大吉大利，晚上吃鸡/index.html">
 <meta property="og:site_name" content="CleverChang">
-<meta property="og:description" content="今天分享的内容是HTTPS安全传输的原理。大家都知道HTTP有很多缺点，比如：  通信使用明文，内容可能会被盗窃。 不验证通信方身份，因此有可能遭遇伪装。 无法验证报文的完整性，所以有可能已经遭到篡改。  如果使用HTTP，就感觉人在大街上裸奔一样，会被任何人看到，任何想拦截的人都可以将其拦截下来。所以为了解决这些问题，HTTPS就应运而生了。 披着SSL外套的HTTP　　HTTPS并不是取代">
-<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-21/31598950.jpg">
-<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-22/76085074.jpg">
-<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-22/30803288.jpg">
-<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-22/5435184.jpg">
-<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-22/49347925.jpg">
-<meta property="og:updated_time" content="2017-07-22T12:51:56.517Z">
+<meta property="og:description" content="不知道你有没有突然发现身边总有人喊着：“今晚吃鸡，吃鸡balabala的”。甚至都有了以下表情包：   吃鸡到底是个什么梗？大家不用想歪，这个鸡并不是那个鸡，吃鸡 slogan 来源于全球火爆的一款游戏——绝地求生，这是一款求生 + 射击 + 团队 + balabala 的游戏，而“大吉大利，晚上吃鸡”正是拿了第一名后屏幕显示的，英文原文：“Winner Winner ，Chicken dinne">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-9-1/98169743.jpg">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-9-1/89568127.jpg">
+<meta property="og:image" content="http://or0um8wrx.bkt.clouddn.com/17-9-1/27832933.jpg">
+<meta property="og:updated_time" content="2017-09-02T12:10:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="确保WEB安全的HTTPS">
-<meta name="twitter:description" content="今天分享的内容是HTTPS安全传输的原理。大家都知道HTTP有很多缺点，比如：  通信使用明文，内容可能会被盗窃。 不验证通信方身份，因此有可能遭遇伪装。 无法验证报文的完整性，所以有可能已经遭到篡改。  如果使用HTTP，就感觉人在大街上裸奔一样，会被任何人看到，任何想拦截的人都可以将其拦截下来。所以为了解决这些问题，HTTPS就应运而生了。 披着SSL外套的HTTP　　HTTPS并不是取代">
-<meta name="twitter:image" content="http://or0um8wrx.bkt.clouddn.com/17-7-21/31598950.jpg">
+<meta name="twitter:title" content="大吉大利，晚上吃鸡">
+<meta name="twitter:description" content="不知道你有没有突然发现身边总有人喊着：“今晚吃鸡，吃鸡balabala的”。甚至都有了以下表情包：   吃鸡到底是个什么梗？大家不用想歪，这个鸡并不是那个鸡，吃鸡 slogan 来源于全球火爆的一款游戏——绝地求生，这是一款求生 + 射击 + 团队 + balabala 的游戏，而“大吉大利，晚上吃鸡”正是拿了第一名后屏幕显示的，英文原文：“Winner Winner ，Chicken dinne">
+<meta name="twitter:image" content="http://or0um8wrx.bkt.clouddn.com/17-9-1/98169743.jpg">
 
 
 
@@ -134,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://www.xichangblog.com/2017/07/19/确保WEB安全的HTTPS/"/>
+  <link rel="canonical" href="http://www.xichangblog.com/2017/09/02/大吉大利，晚上吃鸡/"/>
 
 
 
 
 
-  <title>确保WEB安全的HTTPS | CleverChang</title>
+  <title>大吉大利，晚上吃鸡 | CleverChang</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -279,7 +277,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.xichangblog.com/2017/07/19/确保WEB安全的HTTPS/">
+    <link itemprop="mainEntityOfPage" href="http://www.xichangblog.com/2017/09/02/大吉大利，晚上吃鸡/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="The Kite Runner">
@@ -296,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">确保WEB安全的HTTPS</h1>
+          <h1 class="post-title" itemprop="name headline">大吉大利，晚上吃鸡</h1>
         
 
         <div class="post-meta">
@@ -308,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-19T10:38:06+08:00">
-                2017-07-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-02T20:09:20+08:00">
+                2017-09-02
               </time>
             
 
@@ -331,8 +329,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机网络/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机网络</span>
+                  <a href="/categories/感想与生活/" itemprop="url" rel="index">
+                    <span itemprop="name">感想与生活</span>
                   </a>
                 </span>
 
@@ -349,7 +347,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/07/19/确保WEB安全的HTTPS/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/09/02/大吉大利，晚上吃鸡/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -375,34 +373,26 @@
       
 
       
-        <p>　　今天分享的内容是HTTPS安全传输的原理。大家都知道HTTP有很多缺点，比如：</p>
+        <p>不知道你有没有突然发现身边总有人喊着：“今晚吃鸡，吃鸡balabala的”。甚至都有了以下表情包：</p>
+<p><img src="http://or0um8wrx.bkt.clouddn.com/17-9-1/98169743.jpg" alt=""></p>
+<p><img src="http://or0um8wrx.bkt.clouddn.com/17-9-1/89568127.jpg" alt=""></p>
+<p>吃鸡到底是个什么梗？大家不用想歪，这个鸡并不是那个鸡，吃鸡 slogan 来源于全球火爆的一款游戏——绝地求生，这是一款求生 + 射击 + 团队 + balabala 的游戏，而“大吉大利，晚上吃鸡”正是拿了第一名后屏幕显示的，英文原文：“Winner Winner ，Chicken dinner”。现在打开任何一个直播平台，你一定可以看见各大主播都会玩这个。昨晚熊猫TV托马斯和林更新等人的直播引来了160W人的观看，听说王思聪很久没露面就是因为沉迷其中，无法自拔。</p>
+<p>为什么绝地求生会这么火？</p>
+<p>仔细思考，发现这款游戏有火的必然性：</p>
 <ul>
-<li>通信使用明文，内容可能会被盗窃。</li>
-<li>不验证通信方身份，因此有可能遭遇伪装。</li>
-<li>无法验证报文的完整性，所以有可能已经遭到篡改。</li>
+<li>现在市场上的供人们玩耍的网络游戏并不多，LOL（英雄联盟）火了7年之久，很多人开始厌倦了这个模式，而老牌的射击游戏CF（穿越火线），CS（反恐精英）操作难度高，高手与新手之间的差距可以让人怀疑人生，不适合广大群体，其他游戏亦然。</li>
+<li>绝地求生这款游戏画质极好，操作性强，逼真的模仿现实，所有武器随机刷，只要跳伞位置好，抢到好枪打大佬。一个小白都可以一开场就干掉别人，或者苟活做个伏地魔，反正怎么开心怎么玩。</li>
+<li>游戏本身就具备观赏趣味性，而各大平台主播的直播起到了推波助澜的作用。</li>
+<li>……</li>
 </ul>
-<p>如果使用HTTP，就感觉人在大街上裸奔一样，会被任何人看到，任何想拦截的人都可以将其拦截下来。所以为了解决这些问题，HTTPS就应运而生了。</p>
-<h2 id="披着SSL外套的HTTP"><a href="#披着SSL外套的HTTP" class="headerlink" title="披着SSL外套的HTTP"></a><center>披着SSL外套的HTTP</center></h2><p>　　HTTPS并不是取代了HTTP的一种新协议，只是HTTP通信接口部分用SSL（Secure Socket Layer，安全套接层）和TLS（Transport Layer Security，安全传输层协议）协议代替而已。如下图所示：（左边为HTTP，右边为HTTPS）</p>
-<p><img src="http://or0um8wrx.bkt.clouddn.com/17-7-21/31598950.jpg" alt=""></p>
-<p>　　原来直接通过TCP/IP进行传输，后来则必须经过SSL，SSL为传输提供了加密数据通道。不过具体介绍HTTPS安全传输原理之前，先要介绍SSL加密的两种技术：</p>
-<h2 id="共享密钥加密-对称加密"><a href="#共享密钥加密-对称加密" class="headerlink" title="共享密钥加密(对称加密)"></a><center>共享密钥加密(对称加密)</center></h2><p>　　顾名思义，共享密钥就是客户端和服务器利用同一把密钥进行加密，解密。如果密钥被别人拿了，设置密钥就毫无意义。那么问题来了，以共享密钥加密传输时必须将密钥也一并发过去，但是如果有攻击者监视了通信，那就存在了盗取密钥，然后解密查看内容的可能。例：A，B同学相互通信，A利用自己或自己信任的单位做出来的密钥对文件加密，然后将加密后的文件以及密钥一并发过去，B收到后用得到的密钥进行解密。但是这个过程也被隔壁宿舍的C同学利用公钥看到了通信内容。</p>
-<p><img src="http://or0um8wrx.bkt.clouddn.com/17-7-22/76085074.jpg" alt=""></p>
-<h2 id="使用两把密钥的加密-RSA：非对称加密"><a href="#使用两把密钥的加密-RSA：非对称加密" class="headerlink" title="使用两把密钥的加密(RSA：非对称加密)"></a><center>使用两把密钥的加密(RSA：非对称加密)</center></h2><p>　　非对称加密使用的是一对非对称的密钥（即两把密钥不相同）。一把叫私有密钥，另一把是公开密钥。顾名思义，私有密钥是个人知道，不能让别人知道的，而公开密钥则是地球人都可以知道的。（这两个密钥是自己或者自己信任的单位做出来。）例：A，B同学相互通信，A同学利用B传过来的公钥对文件进行加密后发送，B同学利用自己手中的私钥进行解密。同理，A将公钥传给B，B利用公钥加密文件后将文件传给A，A再用自己私钥解密。</p>
-<p><img src="http://or0um8wrx.bkt.clouddn.com/17-7-22/30803288.jpg" alt=""></p>
-<h2 id="HTTPS使用混合加密机制"><a href="#HTTPS使用混合加密机制" class="headerlink" title="HTTPS使用混合加密机制"></a><center>HTTPS使用混合加密机制</center></h2><p>　　HTTPS将这两种加密混合一起用，用RSA加密方式复杂，所以速度会变慢，就上面的例子来说，A传给B的公钥就是利用共享密钥加密（对称加密）进行传输，反正公钥大家都知道，所以用共享密钥加密，速度快，然后B传输文件时，就利用刚A传输过来的公钥进行加密传输，A得到文件后就用私钥解密文件。这样一来就确保了传输的安全。利用两种加密速度会较快，也会更安全。</p>
-<h2 id="证明公开密钥正确性的证书"><a href="#证明公开密钥正确性的证书" class="headerlink" title="证明公开密钥正确性的证书"></a><center>证明公开密钥正确性的证书</center></h2><p>　　看起来利用非对称加密似乎使通信变得十分的安全，然而不然，公钥在传输中可能被替换，我们也无法验证公钥是否是货真价实的公钥。例：A，B同学互相通信，隔壁老C同学觉得不爽他们两个大老爷们天天在网上叽叽歪歪，但是自己无法破解他们传输的内容，于是C同学监听了他们的通信，将A，B相互通信使用的公钥替换掉，让A,B以为自己还处于安全之中。</p>
-<p>　　于是为了解决这个问题， 数字认证机构以及其相关的颁布的公开密钥证书就出现了。首先我们介绍下数字认证机构业务流程：服务器运营人员向证书认证机构提出公开密钥的申请。数字证书认证机构在判明提出申请者的身份后，对已申请的公开密钥做数字签名，然后分配这个已签名的公开密钥，并将该公开密钥放入公钥证书后绑定在一起。</p>
-<p>　　服务器会将这份由数字签名证书认证的的证书发给客户端。客户端收到后使用认证机构的公开密钥（这个公开密钥必须安全转移到客户端，通信时安全转交很难，所以一般多数浏览器会事前植入常用的认证机关公开密钥）进行验证证书上的数字签名，一旦通过客户端就知道这个密钥可以用，没有被篡改。</p>
-<h2 id="中间人攻击"><a href="#中间人攻击" class="headerlink" title="中间人攻击"></a><center>中间人攻击</center></h2><p>　　中间人攻击（Man-in-the-MiddleAttack，简称“MITM攻击”）是一种“间接”的入侵攻击，这种攻击模式是通过各种技术手段将受入侵者控制的一台计算机虚拟放置在网络连接中的两台通信计算机之间，这台计算机就称为“中间人”。也就是我之前说到的那个不爽的C同学，C同学利用自己电脑将其置于A，B同学通信之间，就可以发生中间人攻击。所以日常通信时很有可能有人“拦在了路中间”而且我们很可能不知道。这个中间人可能篡改数据，盗取数据等等。如下图所示：</p>
-<p><img src="http://or0um8wrx.bkt.clouddn.com/17-7-22/5435184.jpg" alt=""></p>
-<h2 id="为啥不一直用HTTPS"><a href="#为啥不一直用HTTPS" class="headerlink" title="为啥不一直用HTTPS?"></a><center>为啥不一直用HTTPS?</center></h2><p>　　虽然HTTPS优点很多，也更安全，但是缺点也很明显：</p>
-<ul>
-<li>慢，HTTPS需要做服务器，客户端的加密解密处理，所以消耗CPU和内存等硬件资源。而且SSL通信部分消耗网络资源，并且其对通信进行处理，所以时间大大加长。</li>
-<li>非敏感信息并不需要使用HTTP，只有在访问个人信息等敏感数据才利用HTTPS。</li>
-<li>买证书也要钱，一些小网站还真买不起。</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><center>总结</center></h2><p>　　最后一张简洁版图总结一下HTTPS是如何运作的，相信懂了之前的原理应该不难理解了(不对之处，欢迎指教)。</p>
-<p><img src="http://or0um8wrx.bkt.clouddn.com/17-7-22/49347925.jpg" alt=""></p>
+<p>游戏确实火了，不过这个游戏能火多久？会不会代替其他游戏，出现像LOL占据网吧的现象？</p>
+<p>个人认为目前不会，这个游戏门槛相比其他游戏还是高了点，买这款游戏 98 元，外加加速器付费，所以费用会高出许多。不要小看了这些钱，对于小学生，初中生和大部分高中生还是一笔不小的费用，这注定了绝地求生的受众相对较少，不像LOL老少皆玩。</p>
+<p>其次，游戏虽然小白可以上手，但是想活到最后几乎是不可能，每天打了这么久，吃不到一把鸡，耐心一般都会磨灭。况且这款游戏摇晃厉害，对于以前没玩过这种类型的人，可能会产生头晕不适。</p>
+<p>个人也玩了两把，发现如果你运气足够“好”，一直没碰到人，那你游戏体验就无法描述了，是幸运苟活下来了？还是不幸竟然一个人都碰不到。</p>
+<p>最最重要的是，妹子玩射击类游戏的少，广大妹子并不见得青睐这款游戏。（想在这游戏里面找女朋友还不如去农药）</p>
+<p>不过听说腾讯会代理这款游戏，如果真这么做，游戏速度肯定加快，每个月就节省了 30 块的加速器费用，那个时候确实存在普及这个游戏的可能，并且还不用申请账号，直接QQ登录，然后各种虐国服小学生的视频就出来了……</p>
+<p>不过“吃鸡”的火爆也直接导致了很多“夜猫”的诞生，前几日某主播，不吃到鸡不停播，结果……第二天了。前两天室友也是通宵达旦，根据他自己描述：“我嘴巴上说要不休息会吧，结果还一直再捡枪……”，看来嘴巴上说不要，身体还是很诚实。所以还是要温馨提示：“吃鸡”乃长久之事，不要太过频繁。毕竟来日方长。</p>
+<p><img src="http://or0um8wrx.bkt.clouddn.com/17-9-1/27832933.jpg" alt=""></p>
 
       
     </div>
@@ -432,7 +422,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/HTTPS/" rel="tag"># HTTPS</a>
+            <a href="/tags/随笔/" rel="tag"># 随笔</a>
+          
+            <a href="/tags/生活/" rel="tag"># 生活</a>
           
         </div>
       
@@ -445,8 +437,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/04/数据结构与算法Java版——排序技术/" rel="next" title="数据结构与算法Java版——九大基本排序算法">
-                <i class="fa fa-chevron-left"></i> 数据结构与算法Java版——九大基本排序算法
+              <a href="/2017/08/31/Mybatis入门/" rel="next" title="Mybatis入门">
+                <i class="fa fa-chevron-left"></i> Mybatis入门
               </a>
             
           </div>
@@ -454,10 +446,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/12/再看水浒招安/" rel="prev" title="再看水浒招安">
-                再看水浒招安 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -528,17 +516,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -638,22 +617,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#披着SSL外套的HTTP"><span class="nav-number">1.</span> <span class="nav-text">披着SSL外套的HTTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共享密钥加密-对称加密"><span class="nav-number">2.</span> <span class="nav-text">共享密钥加密(对称加密)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用两把密钥的加密-RSA：非对称加密"><span class="nav-number">3.</span> <span class="nav-text">使用两把密钥的加密(RSA：非对称加密)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS使用混合加密机制"><span class="nav-number">4.</span> <span class="nav-text">HTTPS使用混合加密机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证明公开密钥正确性的证书"><span class="nav-number">5.</span> <span class="nav-text">证明公开密钥正确性的证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中间人攻击"><span class="nav-number">6.</span> <span class="nav-text">中间人攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为啥不一直用HTTPS"><span class="nav-number">7.</span> <span class="nav-text">为啥不一直用HTTPS?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
