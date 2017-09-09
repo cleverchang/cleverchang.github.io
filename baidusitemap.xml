@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://www.xichangblog.com/2017/09/09/%E8%B0%88%E8%B0%88%E8%BE%93%E5%87%BA%E4%B8%8E%E8%AE%A4%E7%9F%A5/</loc>
+    <lastmod>2017-09-09T07:07:39.449Z</lastmod>
+    <data>
+        <display>
+        <title>谈谈输出与认知</title>
+        <pubTime>2017-09-09T07:05:42.000Z</pubTime>
+        
+        <tag>随笔</tag>
+         
+        <tag>生活</tag>
+         
+         
+           
+             
+              <breadCrumb title="感想与生活" url="http://www.xichangblog.com/categories/%E6%84%9F%E6%83%B3%E4%B8%8E%E7%94%9F%E6%B4%BB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.xichangblog.com/2017/09/07/Mybatis%E4%B8%80%E5%AF%B9%E4%B8%80%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB/</loc>
     <lastmod>2017-09-07T06:52:37.749Z</lastmod>
     <data>
@@ -380,9 +402,9 @@
         
         <tag>java</tag>
          
-        <tag>数组</tag>
-         
         <tag>内存</tag>
+         
+        <tag>数组</tag>
          
          
            
