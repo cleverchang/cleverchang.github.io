@@ -1,0 +1,818 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java,数据结构,图，图的遍历," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="图一般有两种实现方式，一种是邻接矩阵，一种是邻接表。这里为大家带来的是邻接矩阵实现图。 这里重点说下图的遍历的两种算法思路： 深度遍历： 深度遍历类似于树的前序遍历。 1、访问顶点v； 2、从v的未被访问的邻接点中选取一个顶点w，从w出发进行深度遍历； 3、重复上述两步，直到所有和v有路径相通的顶点都被访问到； 伪代码：  1、访问顶点v，state[v]=1; 2、w=顶点v的第一个邻接点； 3">
+<meta name="keywords" content="java,数据结构,图，图的遍历">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法Java版——图及其遍历">
+<meta property="og:url" content="http://www.xichangblog.com/2017/10/24/数据结构与算法Java版——图及其遍历/index.html">
+<meta property="og:site_name" content="CleverChang">
+<meta property="og:description" content="图一般有两种实现方式，一种是邻接矩阵，一种是邻接表。这里为大家带来的是邻接矩阵实现图。 这里重点说下图的遍历的两种算法思路： 深度遍历： 深度遍历类似于树的前序遍历。 1、访问顶点v； 2、从v的未被访问的邻接点中选取一个顶点w，从w出发进行深度遍历； 3、重复上述两步，直到所有和v有路径相通的顶点都被访问到； 伪代码：  1、访问顶点v，state[v]=1; 2、w=顶点v的第一个邻接点； 3">
+<meta property="og:updated_time" content="2017-10-24T11:01:19.441Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构与算法Java版——图及其遍历">
+<meta name="twitter:description" content="图一般有两种实现方式，一种是邻接矩阵，一种是邻接表。这里为大家带来的是邻接矩阵实现图。 这里重点说下图的遍历的两种算法思路： 深度遍历： 深度遍历类似于树的前序遍历。 1、访问顶点v； 2、从v的未被访问的邻接点中选取一个顶点w，从w出发进行深度遍历； 3、重复上述两步，直到所有和v有路径相通的顶点都被访问到； 伪代码：  1、访问顶点v，state[v]=1; 2、w=顶点v的第一个邻接点； 3">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.xichangblog.com/2017/10/24/数据结构与算法Java版——图及其遍历/"/>
+
+
+
+
+
+  <title>数据结构与算法Java版——图及其遍历 | CleverChang</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CleverChang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">practise makes perfect</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.xichangblog.com/2017/10/24/数据结构与算法Java版——图及其遍历/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CleverChang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CleverChang">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构与算法Java版——图及其遍历</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T18:37:12+08:00">
+                2017-10-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构与算法Java版/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法Java版</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/10/24/数据结构与算法Java版——图及其遍历/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>图一般有两种实现方式，一种是邻接矩阵，一种是邻接表。这里为大家带来的是邻接矩阵实现图。</p>
+<p>这里重点说下图的遍历的两种算法思路：</p>
+<p>深度遍历：</p>
+<p>深度遍历类似于树的前序遍历。</p>
+<p>1、访问顶点v；</p>
+<p>2、从v的未被访问的邻接点中选取一个顶点w，从w出发进行深度遍历；</p>
+<p>3、重复上述两步，直到所有和v有路径相通的顶点都被访问到；</p>
+<p>伪代码：</p>
+<blockquote>
+<p>1、访问顶点v，state[v]=1;</p>
+<p>2、w=顶点v的第一个邻接点；</p>
+<p>3、while（w存在）</p>
+<p>　　3.1、if(w未被访问)从顶点出发递归执行该算法;</p>
+<p>　　3.2、w=顶点v的下一个邻接点;</p>
+</blockquote>
+<p>广度优先遍历( breadth-first traverse)类似于树的层序遍历 思路为：</p>
+<p>(1) 访问顶点v;</p>
+<p>(2) 依次访问v 的各个未被访问的邻接点v1,v2,v3,..vk;</p>
+<p>(3) 分别从V,V2,..，Vk 出发依次访问到他们没有被访问的邻接点，并使”先被访问顶点的邻接点”先于“后被访问顶点的邻接点”被访问。直到图中所有与顶点v有路径相通的顶点都被访问到。</p>
+<blockquote>
+<p>1.初始化队列Q;</p>
+<p>2.访问顶点v; state [v]=1; 顶点v人队列Q;</p>
+<p>3.while (队列Q非空)<br>　　3.1　v=队列Q的队头元素出队;<br>　　3.2 　w=顶点v的第一个邻接点;</p>
+<p>　　3.3while (w存在)<br>　　　　3.3.1　如果w 未被访问,则访问顶点w; 则访问顶点w；state[w]=1;顶点w入队列Q；</p>
+<p>　　　　3.3.2 　w=顶点v的下一个邻接点;</p>
+</blockquote>
+<p>代码如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 图的顶点数</div><div class="line">	 */</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> vertexSize = <span class="number">0</span>;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 图的邻接矩阵</div><div class="line">	 */</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span>[][] matrix = <span class="keyword">null</span>;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 顶点数组</div><div class="line">	 */</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span>[] vertex = <span class="keyword">null</span>;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 代表两点之间无边</div><div class="line">	 */</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_SIZE = <span class="number">1000</span>;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 每个点被访问的状态 0为没有访问，1为被访问</div><div class="line">	 */</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span>[] state = <span class="keyword">null</span>;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 队，用于广度优先遍历</div><div class="line">	 */</div><div class="line">	<span class="keyword">private</span> LinkedList&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 求顶点</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getVertex</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> vertexSize;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Graph</span><span class="params">(<span class="keyword">int</span> size, <span class="keyword">int</span>[]... number)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.vertexSize = size;</div><div class="line">		matrix = <span class="keyword">new</span> <span class="keyword">int</span>[size][size];</div><div class="line">		vertex = <span class="keyword">new</span> <span class="keyword">int</span>[size];</div><div class="line">      	<span class="comment">//初始化数组</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vertex.length; i++) &#123;</div><div class="line">			vertex[i] = i;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; number.length; i++) &#123;</div><div class="line">			matrix[i] = number[i];</div><div class="line">		&#125;</div><div class="line">		state = <span class="keyword">new</span> <span class="keyword">int</span>[size];</div><div class="line">		Arrays.fill(state, <span class="number">0</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 获得顶点的出度,第i个顶点即第i行不等于0，小于最大值的数的和</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> v</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getOutDegree</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</div><div class="line">		<span class="comment">// 出度数</span></div><div class="line">		<span class="keyword">int</span> j = <span class="number">0</span>;</div><div class="line">		<span class="comment">// 权重</span></div><div class="line">		<span class="keyword">int</span> weight = <span class="number">0</span>;</div><div class="line">		<span class="comment">// 遍历第i行</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix[v].length; i++) &#123;</div><div class="line">			weight = matrix[v][i];</div><div class="line">			<span class="keyword">if</span> (weight != <span class="number">0</span> &amp;&amp; weight &lt; MAX_SIZE) &#123;</div><div class="line">				j++;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		System.out.println(<span class="string">"v"</span> + v + <span class="string">"出度为："</span> + j);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 获得顶点的入度</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> v</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getIntoDegree</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</div><div class="line">		<span class="comment">// 入度数</span></div><div class="line">		<span class="keyword">int</span> j = <span class="number">0</span>;</div><div class="line">		<span class="comment">// 权重</span></div><div class="line">		<span class="keyword">int</span> weight = <span class="number">0</span>;</div><div class="line">		<span class="comment">// 遍历第i行</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length; i++) &#123;</div><div class="line">			weight = matrix[i][v];</div><div class="line">			<span class="keyword">if</span> (weight != <span class="number">0</span> &amp;&amp; weight &lt; MAX_SIZE) &#123;</div><div class="line">				j++;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		System.out.println(<span class="string">"v"</span> + v + <span class="string">"入度为："</span> + j);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 获得两点之间的权重</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> v1</div><div class="line">	 * <span class="doctag">@param</span> v2</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getWeight</span><span class="params">(<span class="keyword">int</span> v1, <span class="keyword">int</span> v2)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> weight = matrix[v1][v2] == MAX_SIZE ? -<span class="number">1</span> : matrix[v1][v2];</div><div class="line">		<span class="keyword">return</span> weight == <span class="number">0</span> ? <span class="number">0</span> : weight;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 添加点</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> thisToOther</div><div class="line">	 *            添加的点到其他点的距离</div><div class="line">	 * <span class="doctag">@param</span> otherToThis</div><div class="line">	 *            其他点到这个点的距离</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addVertex</span><span class="params">(<span class="keyword">int</span>[] thisToOther, <span class="keyword">int</span>[] otherToThis)</span> </span>&#123;</div><div class="line">		<span class="comment">// 顶点数</span></div><div class="line">		vertexSize++;</div><div class="line">		vertex = <span class="keyword">new</span> <span class="keyword">int</span>[vertexSize];</div><div class="line">		state = <span class="keyword">new</span> <span class="keyword">int</span>[vertexSize];</div><div class="line">		Arrays.fill(state, <span class="number">0</span>);</div><div class="line">		<span class="comment">// 把原来的数据传到新的数组</span></div><div class="line">		<span class="keyword">int</span>[][] temp = matrix;</div><div class="line">		matrix = <span class="keyword">new</span> <span class="keyword">int</span>[vertexSize][vertexSize];</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; temp.length; i++) &#123;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; temp.length; j++) &#123;</div><div class="line">				matrix[i][j] = temp[i][j];</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		matrix[vertexSize - <span class="number">1</span>][vertexSize - <span class="number">1</span>] = <span class="number">0</span>;</div><div class="line">		<span class="comment">// 把边添加进去</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; thisToOther.length; i++) &#123;</div><div class="line">			matrix[vertexSize - <span class="number">1</span>][i] = thisToOther[i];</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; otherToThis.length; i++) &#123;</div><div class="line">			matrix[i][vertexSize - <span class="number">1</span>] = otherToThis[i];</div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 获得指定点的第一个邻接点</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> v</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getFirst</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vertexSize; i++) &#123;</div><div class="line">			<span class="keyword">if</span> (matrix[v][i] &gt; <span class="number">0</span> &amp;&amp; matrix[v][i] &lt; MAX_SIZE) &#123;</div><div class="line">				<span class="keyword">return</span> i;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 获得指定节点的下一个邻接点</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> v</div><div class="line">	 *            指定节点</div><div class="line">	 * <span class="doctag">@param</span> index</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getNext</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = index + <span class="number">1</span>; i &lt; vertexSize; i++) &#123;</div><div class="line">			<span class="keyword">if</span> (matrix[v][i] &gt; <span class="number">0</span> &amp;&amp; matrix[v][i] &lt; MAX_SIZE) &#123;</div><div class="line">				<span class="keyword">return</span> i;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 深度优先遍历</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> v 开始点</div><div class="line">	 *            </div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">depthFirst</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"开始访问:"</span> + v);</div><div class="line">		state[v] = <span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> w = getFirst(v);</div><div class="line">		<span class="keyword">while</span> (w != -<span class="number">1</span>) &#123;</div><div class="line">			<span class="comment">// 如果没有被访问，从这个顶点开始</span></div><div class="line">			<span class="keyword">if</span> (state[w] == <span class="number">0</span>) &#123;</div><div class="line">				depthFirst(w);</div><div class="line">			&#125;</div><div class="line">			w = getNext(v, w);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 对外开放的深度优先遍历</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> v</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">depthFirstTraverse</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</div><div class="line">		depthFirst(v);</div><div class="line">		<span class="comment">//状态数组清理</span></div><div class="line">		Arrays.fill(state, <span class="number">0</span>);	</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 广度优先遍历</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> v</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">boardFirst</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</div><div class="line">		<span class="comment">// 顶点入队</span></div><div class="line">		queue.offer(v);</div><div class="line">		<span class="comment">// 顶点被访问</span></div><div class="line">		state[v] = <span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> w = <span class="number">0</span>;</div><div class="line">		<span class="keyword">while</span> (!queue.isEmpty()) &#123;</div><div class="line">			<span class="comment">// 出队</span></div><div class="line">			v = queue.poll();</div><div class="line">			w = getFirst(v);</div><div class="line">			System.out.println(<span class="string">"开始访问点v"</span>+v);</div><div class="line">			<span class="keyword">while</span> (w != -<span class="number">1</span>) &#123;</div><div class="line">				<span class="comment">//如果没有被访问则访问并且入队</span></div><div class="line">				<span class="keyword">if</span>(state[w] == <span class="number">0</span>)&#123;</div><div class="line">					queue.offer(w);</div><div class="line">					state[w] = <span class="number">1</span>;</div><div class="line">				&#125;</div><div class="line">				w = getNext(v, w);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 对外广度遍历算法</div><div class="line">	 * <span class="doctag">@param</span> v</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">boardFirstTraverse</span><span class="params">(<span class="keyword">int</span> v)</span></span>&#123;</div><div class="line">		boardFirst(v);</div><div class="line">		Arrays.fill(state, <span class="number">0</span>);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 打印矩阵</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printGraph</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span>[] is : matrix) &#123;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i : is) &#123;</div><div class="line">				System.out.print(i + <span class="string">"  "</span>);</div><div class="line"></div><div class="line">			&#125;</div><div class="line">			System.out.println();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span>[] a0 = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; <span class="number">0</span>, <span class="number">9</span>, <span class="number">6</span>, MAX_SIZE, MAX_SIZE &#125;;</div><div class="line">		<span class="keyword">int</span>[] a1 = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; MAX_SIZE, <span class="number">0</span>, <span class="number">4</span>, <span class="number">5</span>, MAX_SIZE &#125;;</div><div class="line">		<span class="keyword">int</span>[] a2 = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; MAX_SIZE, MAX_SIZE, <span class="number">0</span>, MAX_SIZE, <span class="number">7</span> &#125;;</div><div class="line">		<span class="keyword">int</span>[] a3 = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; <span class="number">3</span>, MAX_SIZE, MAX_SIZE, <span class="number">0</span>, MAX_SIZE &#125;;</div><div class="line">		<span class="keyword">int</span>[] a4 = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; MAX_SIZE, MAX_SIZE, MAX_SIZE, <span class="number">8</span>, <span class="number">0</span> &#125;;</div><div class="line">		Graph graph = <span class="keyword">new</span> Graph(<span class="number">5</span>, a0, a1, a2, a3, a4);</div><div class="line">		graph.printGraph();</div><div class="line"></div><div class="line">		<span class="comment">/*</span></div><div class="line">		 * graph.getOutDegree(0); graph.getIntoDegree(4);</div><div class="line">		 * System.out.println("两点之间权重为：" + graph.getWeight(1, 3));</div><div class="line">		 * System.out.println("顶点为:" + graph.getVertex());</div><div class="line">		 * </div><div class="line">		 * graph.addVertex(new int[] &#123; MAX_SIZE, MAX_SIZE, 6, MAX_SIZE, 5 &#125;, new</div><div class="line">		 * int[] &#123; MAX_SIZE, MAX_SIZE, 6, MAX_SIZE, 5 &#125;); graph.printGraph();</div><div class="line">		 * graph.getOutDegree(0); graph.getIntoDegree(4);</div><div class="line">		 * System.out.println("两点之间权重为：" + graph.getWeight(1, 3));</div><div class="line">		 * System.out.println("顶点为:" + graph.getVertex());</div><div class="line">		 */</div><div class="line">		System.out.println(<span class="string">"开始深度遍历："</span>);</div><div class="line">		graph.depthFirstTraverse(<span class="number">0</span>);</div><div class="line">		System.out.println(<span class="string">"开始广度遍历："</span>);</div><div class="line">		graph.boardFirstTraverse(<span class="number">0</span>);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上就实现了图及其的遍历。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/图，图的遍历/" rel="tag"># 图，图的遍历</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/18/数据结构与算法Java版——中缀表达式转后缀表达式/" rel="next" title="数据结构与算法Java版——中缀表达式转后缀表达式">
+                <i class="fa fa-chevron-left"></i> 数据结构与算法Java版——中缀表达式转后缀表达式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="CleverChang" />
+          <p class="site-author-name" itemprop="name">CleverChang</p>
+           
+              <p class="site-description motion-element" itemprop="description">吾生有涯，而知无涯也</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/cleverchang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/fa2da21ee7a7/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net//xichang702" target="_blank" title="csdn">
+                  
+                    <i class="fa fa-fw fa-anchor"></i>
+                  
+                  csdn
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://hanwenblog.cn" target="_blank" title="好友博客">
+                  
+                    <i class="fa fa-fw fa-sign-in"></i>
+                  
+                  好友博客
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<center>
+<div>
+<span class="with-love"><i class="fa fa-star"></i></span>
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本网站总访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+<span class="with-love"><i class="fa fa-star"></i></span>
+</div>
+</center>
+<center>
+<div class="theme-info">  
+  <span class="post-count">版权为作者所有，转发请注明地址</span>
+</div>
+</center>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4b4b90c549814eafa985e7f92cf0d17a",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+
+  
+</body>
+</html>
