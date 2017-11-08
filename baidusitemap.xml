@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>http://www.xichangblog.com/2017/11/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Java%E7%89%88%E2%80%94%E2%80%94%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2017-11-08T13:04:24.412Z</lastmod>
+    <data>
+        <display>
+        <title>数据结构与算法Java版——约瑟夫环问题</title>
+        <pubTime>2017-11-08T12:48:20.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>数据结构</tag>
+         
+        <tag>约瑟夫环</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据结构与算法Java版" url="http://www.xichangblog.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Java%E7%89%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.xichangblog.com/2017/11/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Java%E7%89%88%E2%80%94%E2%80%94%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2017-11-08T12:56:58.282Z</lastmod>
+    <data>
+        <display>
+        <title>数据结构与算法Java版——八皇后问题</title>
+        <pubTime>2017-11-08T12:47:56.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>数据结构，八皇后问题</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据结构与算法Java版" url="http://www.xichangblog.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Java%E7%89%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.xichangblog.com/2017/10/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Java%E7%89%88%E2%80%94%E2%80%94LCS%E6%9C%80%E9%95%BF%E5%AD%90%E5%BA%8F%E5%88%97/</loc>
     <lastmod>2017-10-31T12:24:16.765Z</lastmod>
     <data>
@@ -498,9 +544,9 @@
         
         <tag>java</tag>
          
-        <tag>数组</tag>
-         
         <tag>内存</tag>
+         
+        <tag>数组</tag>
          
          
            
